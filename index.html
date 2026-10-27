@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CON26W0 – Practice Exam 2026</title>
+<title>CON26W0 – Practice Exam 2026 (Paper 2)</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -18,7 +18,7 @@
   header {
     text-align: center;
     padding: 30px 20px;
-    background: linear-gradient(135deg, #1e40af, #7c3aed);
+    background: linear-gradient(135deg, #0f766e, #0284c7);
     border-radius: 16px;
     margin-bottom: 25px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
@@ -30,24 +30,24 @@
 
   .instructions {
     background: #1e293b;
-    border-left: 4px solid #3b82f6;
+    border-left: 4px solid #0ea5e9;
     padding: 18px 22px;
     border-radius: 10px;
     margin-bottom: 25px;
     font-size: 0.92em;
   }
-  .instructions h3 { color: #60a5fa; margin-bottom: 8px; font-size: 1em; }
+  .instructions h3 { color: #38bdf8; margin-bottom: 8px; font-size: 1em; }
   .instructions ul { margin-left: 20px; }
   .instructions li { margin: 4px 0; }
 
   .section-title {
-    background: linear-gradient(90deg, #1e40af, #3b82f6);
+    background: linear-gradient(90deg, #0f766e, #0ea5e9);
     padding: 14px 22px;
     border-radius: 10px;
     margin: 30px 0 20px;
     font-size: 1.15em;
     font-weight: bold;
-    box-shadow: 0 4px 15px rgba(59,130,246,0.3);
+    box-shadow: 0 4px 15px rgba(14,165,233,0.3);
   }
 
   .question {
@@ -58,11 +58,11 @@
     border: 1px solid #334155;
     transition: border-color 0.3s;
   }
-  .question:hover { border-color: #3b82f6; }
+  .question:hover { border-color: #0ea5e9; }
   .q-text { font-weight: 600; margin-bottom: 14px; font-size: 1.02em; color: #f1f5f9; }
   .q-marks {
     display: inline-block;
-    background: #7c3aed;
+    background: #0d9488;
     color: #fff;
     font-size: 0.75em;
     padding: 2px 10px;
@@ -83,11 +83,11 @@
     border: 1px solid #334155;
     font-size: 0.95em;
   }
-  .options label:hover { background: #1e3a5f; border-color: #3b82f6; }
-  .options input[type="radio"], .options input[type="checkbox"] { margin-top: 4px; accent-color: #3b82f6; transform: scale(1.2); }
-  .options label.selected { background: #1e3a5f; border-color: #3b82f6; }
+  .options label:hover { background: #164e63; border-color: #0ea5e9; }
+  .options input[type="radio"], .options input[type="checkbox"] { margin-top: 4px; accent-color: #0ea5e9; transform: scale(1.2); }
+  .options label.selected { background: #164e63; border-color: #0ea5e9; }
 
-  input[type="text"], textarea, select {
+  input[type="text"], textarea {
     background: #0f172a;
     border: 1px solid #334155;
     border-radius: 8px;
@@ -98,7 +98,7 @@
     font-family: inherit;
     transition: border-color 0.2s;
   }
-  input[type="text"]:focus, textarea:focus { outline: none; border-color: #3b82f6; }
+  input[type="text"]:focus, textarea:focus { outline: none; border-color: #0ea5e9; }
   textarea { resize: vertical; min-height: 90px; }
   .short-answer { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
   .short-answer input { flex: 1; min-width: 200px; }
@@ -149,23 +149,23 @@
     display: none;
     margin-top: 16px;
     padding: 16px 20px;
-    background: linear-gradient(135deg, rgba(30,64,175,0.3), rgba(124,58,237,0.2));
-    border-left: 4px solid #7c3aed;
+    background: linear-gradient(135deg, rgba(15,118,110,0.3), rgba(2,132,199,0.2));
+    border-left: 4px solid #0ea5e9;
     border-radius: 8px;
     font-size: 0.92em;
   }
   .solution.show { display: block; animation: fadeIn 0.4s; }
-  .solution h4 { color: #a78bfa; margin-bottom: 8px; font-size: 0.95em; }
+  .solution h4 { color: #38bdf8; margin-bottom: 8px; font-size: 0.95em; }
   .solution p, .solution li { margin: 5px 0; }
   .solution ul { margin-left: 18px; }
   .solution table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.88em; }
   .solution th, .solution td { padding: 7px 10px; border: 1px solid #475569; text-align: left; }
-  .solution th { background: #1e3a5f; color: #93c5fd; }
+  .solution th { background: #164e63; color: #67e8f9; }
   .solution code { background: #0f172a; padding: 2px 6px; border-radius: 4px; font-family: 'Courier New', monospace; color: #fbbf24; }
 
   .progress-bar {
     position: fixed; top: 0; left: 0; height: 4px;
-    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    background: linear-gradient(90deg, #0ea5e9, #14b8a6);
     width: 0%; z-index: 999; transition: width 0.2s;
   }
 
@@ -182,6 +182,16 @@
     overflow-x: auto;
   }
 
+  footer {
+    text-align: center;
+    padding: 40px 0 20px;
+    color: #64748b;
+    font-size: 0.9em;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  footer span { color: #0ea5e9; }
+
   @media (max-width: 600px) {
     body { padding: 10px; }
     header h1 { font-size: 1.3em; }
@@ -196,8 +206,8 @@
 
 <div class="container">
   <header>
-    <h1>📡 Communication Networks II – Practice Exam 2026</h1>
-    <p>CON26W0 / DCN26W0 — Walter Sisulu University (Practice Paper)</p>
+    <h1>📡 Communication Networks II – Practice Exam 2026 (Paper 2)</h1>
+    <p>CON26W0 / DCN26W0 — Walter Sisulu University (Practice Paper 2)</p>
     <div class="meta">
       <span>⏱ 3 Hours</span>
       <span>📝 100 Marks</span>
@@ -239,8 +249,8 @@
     <div style="font-size:0.85em; color:#94a3b8; margin-top:8px;">Structured questions (80 marks) require manual assessment — use "Show All Solutions" to compare.</div>
   </div>
 
-  <footer style="text-align:center; padding:30px 0; color:#64748b; font-size:0.85em;">
-    Based on CON26W0 past papers (2023–2025) • CCNA ITN &amp; SRWE aligned
+  <footer>
+    Designed by <span>Modau.IT</span> • Based on CON26W0 Past Papers
   </footer>
 </div>
 
@@ -252,88 +262,73 @@
 const mcQuestions = [
   {
     id: 'mc1',
-    text: 'Given the IP address 172.16.5.70 with the subnet mask 255.255.255.224, what is the network address?',
-    options: { a: '172.16.5.0', b: '172.16.5.32', c: '172.16.5.64', d: '172.16.5.96' },
-    correct: 'c',
-    explanation: 'Mask /27 = block size 32. Multiples: 0, 32, 64, 96… 70 falls in 64–95 → network = 172.16.5.64.'
+    text: 'Given the IP address 192.168.1.100 with a subnet mask of 255.255.255.224, what is the broadcast address of the subnet?',
+    options: { a: '192.168.1.95', b: '192.168.1.127', c: '192.168.1.96', d: '192.168.1.112' },
+    correct: 'b',
+    explanation: '/27 = block size 32. Subnets: 0, 32, 64, 96, 128… 100 falls in 96–127. Broadcast = 127.'
   },
   {
     id: 'mc2',
-    text: 'What is the last valid host IP address in the subnet 10.0.0.64/27?',
-    options: { a: '10.0.0.94', b: '10.0.0.95', c: '10.0.0.96', d: '10.0.0.63' },
-    correct: 'a',
-    explanation: '/27 = block size 32. Subnet range 64–95. Broadcast = 95. Last usable host = 94.'
+    text: 'Which of the following is a valid Link-Local IPv6 address?',
+    options: { a: '2001:DB8::1', b: 'FE80::1', c: 'FF02::1', d: '::1' },
+    correct: 'b',
+    explanation: 'Link-Local addresses are in the FE80::/10 range. ::1 is loopback, FF02:: is multicast, 2001:DB8:: is global unicast.'
   },
   {
     id: 'mc3',
-    text: 'What is the usable number of host addresses in a subnet with a /30 prefix?',
-    options: { a: '2', b: '4', c: '6', d: '14' },
-    correct: 'a',
-    explanation: '/30 leaves 2 host bits → 2² − 2 = 2 usable hosts.'
+    text: 'Which application layer protocol uses UDP as its transport layer protocol?',
+    options: { a: 'HTTPS', b: 'FTP', c: 'DHCP', d: 'SMTP' },
+    correct: 'c',
+    explanation: 'DHCP uses UDP (ports 67 and 68). The others use TCP.'
   },
   {
     id: 'mc4',
-    text: 'What is the network prefix for the host address 2001:DB8:CAFE:2:AB::5/64?',
-    options: { a: '2001:DB8:CAFE', b: '2001:DB8:CAFE:2', c: '2001:DB8:CAFE:2:AB', d: '2001:DB8:CAFE:2:AB::' },
-    correct: 'b',
-    explanation: '/64 = first 4 hextets (64 bits). Prefix = 2001:DB8:CAFE:2.'
+    text: 'At which OSI layer does a router primarily operate?',
+    options: { a: 'Layer 1', b: 'Layer 2', c: 'Layer 3', d: 'Layer 4' },
+    correct: 'c',
+    explanation: 'Routers make forwarding decisions based on IP addresses, which operate at Layer 3 (Network Layer).'
   },
   {
     id: 'mc5',
-    text: 'A network 192.168.5.0/24 must be split so that one subnet supports 10 hosts and another supports 6 hosts. Which two subnets achieve that? (Choose two.)',
-    options: {
-      a: '192.168.5.0/28',
-      b: '192.168.5.16/29',
-      c: '192.168.5.32/28',
-      d: '192.168.5.48/28',
-      e: '192.168.5.64/27'
-    },
-    correct: ['a','b'],
-    multi: true,
-    explanation: '/28 gives 14 usable hosts (≥10) ✓. /29 gives 6 usable hosts (≥6) ✓. So a and b.'
+    text: 'Which VLAN is used for untagged traffic on an 802.1Q trunk link?',
+    options: { a: 'Data VLAN', b: 'Voice VLAN', c: 'Native VLAN', d: 'Management VLAN' },
+    correct: 'c',
+    explanation: 'The Native VLAN is the only VLAN that carries untagged frames across a trunk.'
   },
   {
     id: 'mc6',
-    text: 'Which two fields are included in the TCP header but NOT in the UDP header? (Choose two.)',
-    options: { a: 'window', b: 'checksum', c: 'source port', d: 'sequence number', e: 'destination port' },
-    correct: ['a','d'],
-    multi: true,
-    explanation: 'TCP has window and sequence number. UDP has only 8-byte header (src port, dst port, length, checksum) — no window or sequence number.'
+    text: 'What is the minimum size of an Ethernet frame (including header and FCS, but excluding the preamble)?',
+    options: { a: '46 bytes', b: '64 bytes', c: '128 bytes', d: '1518 bytes' },
+    correct: 'b',
+    explanation: 'The minimum Ethernet frame size is 64 bytes. Anything smaller is a runt and gets discarded.'
   },
   {
     id: 'mc7',
-    text: 'What information does TCP use to reassemble and reorder received segments?',
-    options: { a: 'port numbers', b: 'sequence numbers', c: 'acknowledgment numbers', d: 'fragment numbers' },
+    text: 'A PC needs to communicate with a server on a different network. What address does the PC use to send the frame?',
+    options: { a: 'The server\'s MAC address', b: 'The default gateway\'s MAC address', c: 'Its own MAC address', d: 'The DNS server\'s MAC address' },
     correct: 'b',
-    explanation: 'TCP uses sequence numbers to reorder segments correctly.'
+    explanation: 'If the destination IP is on a different network, the PC sends the frame to its default gateway (router). Therefore, the destination MAC is the router\'s MAC.'
   },
   {
     id: 'mc8',
-    text: 'A PC receives the IP address 169.254.10.5. Which two conclusions can be drawn? (Choose two.)',
-    options: {
-      a: 'The PC cannot contact a DHCP server.',
-      b: 'The DNS server is misconfigured.',
-      c: 'The PC is configured to obtain an IP automatically.',
-      d: 'The default gateway is not configured.',
-      e: 'The network is misconfigured for routing.'
-    },
-    correct: ['a','c'],
-    multi: true,
-    explanation: '169.254.x.x is APIPA — the PC tried DHCP, failed, and self-assigned. This proves automatic addressing is enabled and DHCP is unreachable.'
+    text: 'Which Wi-Fi frequency band generally offers better penetration through walls but slower data speeds?',
+    options: { a: '2.4 GHz', b: '5 GHz', c: '6 GHz', d: '900 MHz' },
+    correct: 'a',
+    explanation: '2.4 GHz has longer wavelengths, allowing it to pass through walls better, but it supports lower data rates and suffers more interference.'
   },
   {
     id: 'mc9',
-    text: 'What is the first valid host address in the subnet 192.168.1.64/26?',
-    options: { a: '192.168.1.63', b: '192.168.1.65', c: '192.168.1.64', d: '192.168.1.66' },
+    text: 'What is the purpose of the TCP three-way handshake?',
+    options: { a: 'To encrypt the data', b: 'To establish a reliable connection', c: 'To assign an IP address', d: 'To resolve domain names' },
     correct: 'b',
-    explanation: '/26 = block size 64. Network = .64. First host = .65.'
+    explanation: 'The SYN, SYN-ACK, ACK process establishes a reliable, connection-oriented session before data is sent.'
   },
   {
     id: 'mc10',
-    text: 'Which protocol uses UDP for client-to-server communication and TCP for server-to-server communication?',
-    options: { a: 'HTTP', b: 'FTP', c: 'DNS', d: 'SMTP' },
-    correct: 'c',
-    explanation: 'DNS uses UDP for normal client queries (port 53) but TCP for zone transfers between servers.'
+    text: 'What is the decimal equivalent of the binary subnet mask 11111111.11111111.11111111.11111000?',
+    options: { a: '255.255.255.248', b: '255.255.255.240', c: '255.255.255.224', d: '255.255.255.252' },
+    correct: 'a',
+    explanation: '11111000 in binary = 128 + 64 + 32 + 16 + 8 = 248.'
   }
 ];
 
@@ -341,79 +336,79 @@ const shortQuestions = [
   {
     id: 'sa1',
     type: 'matching',
-    text: 'Match the IPv4 address type with its correct address. Enter the letter (A–E) in each box.',
+    text: 'Match the IPv6 address type with its correct address. Enter the letter (A–E) in each box.',
     addresses: [
-      { key: 'Private', correct: 'b' },
-      { key: 'Public', correct: 'd' },
-      { key: 'APIPA', correct: 'c' },
+      { key: 'Global Unicast', correct: 'c' },
       { key: 'Loopback', correct: 'a' },
-      { key: 'Multicast', correct: 'e' }
+      { key: 'Multicast', correct: 'e' },
+      { key: 'Link-Local', correct: 'b' },
+      { key: 'Anycast', correct: 'd' }
     ],
-    legend: 'A. 127.0.0.1  •  B. 172.16.8.1  •  C. 169.254.1.1  •  D. 8.8.8.8  •  E. 224.0.0.9',
-    explanation: 'Private = 172.16.8.1 (B); Public = 8.8.8.8 (D); APIPA = 169.254.1.1 (C); Loopback = 127.0.0.1 (A); Multicast = 224.0.0.9 (E).'
+    legend: 'A. ::1  •  B. FE80::1  •  C. 2001:DB8::1  •  D. Assigned to multiple interfaces (one-to-nearest)  •  E. FF02::1',
+    explanation: 'Global Unicast = 2001:DB8::1 (C); Loopback = ::1 (A); Multicast = FF02::1 (E); Link-Local = FE80::1 (B); Anycast is a concept (D).'
   },
   {
     id: 'sa2',
     type: 'short',
-    text: 'Given the MAC address 00:1A:2B:3C:4D:5E, what is the OUI portion?',
-    correct: ['00:1A:2B','00-1a-2b','001a2b','00:1a:2b'],
-    explanation: 'OUI = first 3 bytes = 00:1A:2B.'
+    text: 'What is the Protocol Data Unit (PDU) of the Network layer?',
+    correct: ['packet'],
+    explanation: 'The Network layer (Layer 3) PDU is the packet.'
   },
   {
     id: 'sa3',
     type: 'short',
-    text: 'How many usable host addresses are available in a /29 subnet?',
-    correct: ['6'],
-    explanation: '/29 → 3 host bits → 2³ − 2 = 6 usable hosts.'
+    text: 'What does DNS stand for?',
+    correct: ['domain name system'],
+    explanation: 'DNS translates domain names to IP addresses.'
   },
   {
     id: 'sa4',
     type: 'short',
-    text: 'What is the prefix length (e.g. /26) for the subnet mask 255.255.255.192?',
-    correct: ['/26','26'],
-    explanation: '255.255.255.192 = 11111111.11111111.11111111.11000000 = /26.'
+    text: 'Which protocol is used to map a known IPv4 address to a MAC address?',
+    correct: ['arp','address resolution protocol'],
+    explanation: 'ARP (Address Resolution Protocol) resolves IP to MAC.'
   },
   {
     id: 'sa5',
     type: 'short',
-    text: 'Which protocol maps a known IPv4 address to an unknown MAC address on a local network?',
-    correct: ['arp','address resolution protocol'],
-    explanation: 'ARP (Address Resolution Protocol) resolves IP → MAC.'
+    text: 'What is the maximum recommended cable length for Cat6 UTP Ethernet? (Include the unit, e.g. 50m)',
+    correct: ['100m','100 m','100 meters','100 metres'],
+    explanation: 'Standard Ethernet over copper twisted-pair has a max distance of 100 meters.'
   },
   {
     id: 'sa6',
     type: 'short',
-    text: 'Which protocol dynamically assigns IP addresses to hosts?',
-    correct: ['dhcp','dynamic host configuration protocol'],
-    explanation: 'DHCP uses DORA (Discover, Offer, Request, Acknowledge).'
+    text: 'What is the IPv4 loopback address?',
+    correct: ['127.0.0.1'],
+    explanation: '127.0.0.1 is used for local testing.'
   },
   {
     id: 'sa7',
     type: 'short',
-    text: 'What is the IPv6 loopback address? (Use the compressed form.)',
-    correct: ['::1','0:0:0:0:0:0:0:1','::1/128'],
-    explanation: 'IPv6 loopback = ::1.'
+    text: 'What is the default subnet mask for a Class C network? (Write in dotted decimal).',
+    correct: ['255.255.255.0','/24'],
+    explanation: 'Class C default mask is 255.255.255.0 (/24).'
   },
   {
     id: 'sa8',
     type: 'short',
-    text: 'An Ethernet frame smaller than 64 bytes is discarded by a switch. What is this frame called?',
-    correct: ['runt','runt frame'],
-    explanation: 'Runt frame — below the 64-byte minimum.'
+    text: 'Which protocol dynamically assigns IP addresses to hosts?',
+    correct: ['dhcp','dynamic host configuration protocol'],
+    explanation: 'DHCP uses the DORA process.'
   },
   {
     id: 'sa9',
     type: 'short',
-    text: 'What is the Protocol Data Unit (PDU) of the Transport layer?',
-    correct: ['segment','segments'],
-    explanation: 'Transport layer PDU = segment (TCP) / datagram (UDP), commonly called segment.'
+    text: 'What is the term for a frame smaller than 64 bytes?',
+    correct: ['runt','runt frame'],
+    explanation: 'Runt frames are discarded by switches.'
   },
   {
     id: 'sa10',
     type: 'short',
-    text: 'What is the default port number used by HTTP?',
-    correct: ['80'],
-    explanation: 'HTTP default port = 80 (HTTPS = 443).'
+    text: 'What is the default port number used by HTTPS?',
+    correct: ['443'],
+    explanation: 'HTTPS uses port 443 (HTTP uses 80).'
   }
 ];
 
@@ -423,357 +418,247 @@ const shortQuestions = [
 
 const structuredQuestions = [
   {
-    id: 'q3',
-    title: 'Question 3 — Network Devices & Models [20 Marks]',
+    id: 'q1',
+    title: 'Question 1 — Network Models & Devices [16 Marks]',
     parts: [
       {
-        id: 'q3_1',
-        text: '3.1 Compare the roles of a switch and a router in a network. Include how each device handles data and contributes to network efficiency.',
-        marks: 8,
-        solution: `<h4>Model Answer</h4>
-        <table>
-          <tr><th>Aspect</th><th>Switch (Layer 2)</th><th>Router (Layer 3)</th></tr>
-          <tr><td>Forwarding decision</td><td>Uses destination <strong>MAC address</strong></td><td>Uses destination <strong>IP address</strong></td></tr>
-          <tr><td>Table</td><td>MAC address (CAM) table</td><td>Routing table</td></tr>
-          <tr><td>Broadcast domain</td><td>Does <em>not</em> break broadcast domains (unless VLANs)</td><td>Breaks broadcast domains — each interface is its own</td></tr>
-          <tr><td>Collision domain</td><td>Each port = separate collision domain</td><td>Each interface = separate collision domain</td></tr>
-          <tr><td>Connects</td><td>Devices within the <em>same</em> LAN</td><td><em>Different</em> networks (LAN↔WAN)</td></tr>
-          <tr><td>Efficiency</td><td>Hardware-based (ASIC) forwarding — very fast; full-duplex; reduces collisions</td><td>Controls broadcast traffic; path selection; ACL/security; NAT; prevents broadcast storms from crossing networks</td></tr>
-        </table>
-        <p><strong>In short:</strong> Switches make <em>intra-network</em> communication fast and efficient; routers make <em>inter-network</em> communication possible and controlled.</p>`
-      },
-      {
-        id: 'q3_2',
-        text: '3.2 PC-A is requesting a web page from a web server. Explain how data is encapsulated using the TCP/IP model.',
+        id: 'q1_1',
+        text: '1.1 Compare the OSI model and the TCP/IP model. In your answer, mention the number of layers in each and how the layers map to each other.',
         marks: 4,
         solution: `<h4>Model Answer</h4>
-        <ol>
-          <li><strong>Application Layer:</strong> HTTP GET request is created (data).</li>
-          <li><strong>Transport Layer:</strong> Data is segmented into TCP segments; source/destination port numbers (e.g. 80) are added.</li>
-          <li><strong>Internet Layer:</strong> Each TCP segment is encapsulated in an IP packet — source and destination IP addresses are added.</li>
-          <li><strong>Network Access Layer:</strong> The IP packet is encapsulated into an Ethernet frame with source/destination MAC addresses; bits are transmitted on the medium.</li>
-        </ol>`
+        <ul>
+          <li><strong>OSI Model:</strong> 7 layers (Physical, Data Link, Network, Transport, Session, Presentation, Application). It is a theoretical reference model.</li>
+          <li><strong>TCP/IP Model:</strong> 4 layers (Network Access, Internet, Transport, Application). It is the practical, implemented model used on the internet.</li>
+          <li><strong>Mapping:</strong> OSI Application, Presentation, and Session map to TCP/IP Application. OSI Transport = TCP/IP Transport. OSI Network = TCP/IP Internet. OSI Data Link and Physical = TCP/IP Network Access.</li>
+        </ul>`
       },
       {
-        id: 'q3_3',
-        text: '3.3 Explain why the OSI model is essential for troubleshooting.',
-        marks: 2,
-        solution: `<h4>Model Answer</h4>
-        <p>The OSI model provides a <strong>common language</strong> and divides networking into <strong>layers</strong>. This lets engineers <em>isolate</em> a fault to a specific layer (bottom-up or top-down), making troubleshooting systematic. Because it is vendor-neutral, the same approach works on any equipment.</p>`
-      },
-      {
-        id: 'q3_4',
-        text: '3.4 Redraw the table and fill in the appropriate protocol, address type, and PDU for each layer.',
+        id: 'q1_2',
+        text: '1.2 Explain the difference between a collision domain and a broadcast domain. How do switches and routers affect each?',
         marks: 6,
         solution: `<h4>Model Answer</h4>
         <table>
-          <tr><th>Layer</th><th>Protocol (example)</th><th>Address Type</th><th>PDU</th></tr>
-          <tr><td>Network Layer</td><td>IPv4 / IPv6</td><td>Logical (IP) address</td><td>Packet</td></tr>
-          <tr><td>Data Link Layer</td><td>Ethernet (802.3)</td><td>Physical (MAC) address</td><td>Frame</td></tr>
+          <tr><th>Domain</th><th>Definition</th><th>Switch Effect</th><th>Router Effect</th></tr>
+          <tr><td><strong>Collision Domain</strong></td><td>A network segment where data packets can "collide" with one another.</td><td>Each switch port is its own collision domain.</td><td>Each router interface is its own collision domain.</td></tr>
+          <tr><td><strong>Broadcast Domain</strong></td><td>A logical division of a network where all nodes can reach each other by broadcast at the Data Link layer.</td><td>Switches forward broadcasts out all ports (does NOT break broadcast domains) unless VLANs are used.</td><td>Routers DO NOT forward broadcasts by default. Each interface is a separate broadcast domain.</td></tr>
         </table>`
+      },
+      {
+        id: 'q1_3',
+        text: '1.3 Explain how encapsulation works when a PC sends an HTTP request to a web server, moving down the TCP/IP model.',
+        marks: 6,
+        solution: `<h4>Model Answer</h4>
+        <ol>
+          <li><strong>Application Layer:</strong> The HTTP GET request is created.</li>
+          <li><strong>Transport Layer:</strong> The data is broken into TCP segments. Source and destination port numbers (e.g., 80 for HTTP) are added.</li>
+          <li><strong>Internet Layer:</strong> The TCP segment is encapsulated in an IP packet. Source and destination IP addresses are added.</li>
+          <li><strong>Network Access Layer:</strong> The IP packet is encapsulated in an Ethernet frame. Source and destination MAC addresses are added, and it is converted to bits for transmission.</li>
+        </ol>`
+      }
+    ]
+  },
+  {
+    id: 'q2',
+    title: 'Question 2 — VLSM Subnetting [12 Marks]',
+    parts: [
+      {
+        id: 'q2_0',
+        text: 'Given the network address 172.16.0.0/22, design a VLSM scheme for three subnets: Subnet A (200 hosts), Subnet B (50 hosts), and Subnet C (20 hosts). Provide the Network Address, First Host, Last Host, Broadcast, and Subnet Mask for each.',
+        marks: 12,
+        solution: `<h4>Model Answer</h4>
+        <p><strong>Step 1:</strong> /22 = 255.255.252.0 (Block size of 4 in the 3rd octet). Available range: 172.16.0.0 to 172.16.3.255.</p>
+        <p><strong>Step 2: Subnet A (200 hosts)</strong><br>
+        Needs 8 host bits (2⁸ = 256). Mask: /24.<br>
+        Network: 172.16.0.0/24<br>
+        Range: 172.16.0.1 – 172.16.0.254<br>
+        Broadcast: 172.16.0.255</p>
+        
+        <p><strong>Step 3: Subnet B (50 hosts)</strong><br>
+        Needs 6 host bits (2⁶ = 64). Mask: /26.<br>
+        Network: 172.16.1.0/26<br>
+        Range: 172.16.1.1 – 172.16.1.62<br>
+        Broadcast: 172.16.1.63</p>
+        
+        <p><strong>Step 4: Subnet C (20 hosts)</strong><br>
+        Needs 5 host bits (2⁵ = 32). Mask: /27.<br>
+        Network: 172.16.1.64/27<br>
+        Range: 172.16.1.65 – 172.16.1.94<br>
+        Broadcast: 172.16.1.95</p>
+        
+        <table>
+          <tr><th>Subnet</th><th>Network</th><th>First Host</th><th>Last Host</th><th>Broadcast</th><th>Mask</th></tr>
+          <tr><td>A</td><td>172.16.0.0</td><td>172.16.0.1</td><td>172.16.0.254</td><td>172.16.0.255</td><td>/24</td></tr>
+          <tr><td>B</td><td>172.16.1.0</td><td>172.16.1.1</td><td>172.16.1.62</td><td>172.16.1.63</td><td>/26</td></tr>
+          <tr><td>C</td><td>172.16.1.64</td><td>172.16.1.65</td><td>172.16.1.94</td><td>172.16.1.95</td><td>/27</td></tr>
+        </table>`
+      }
+    ]
+  },
+  {
+    id: 'q3',
+    title: 'Question 3 — VLANs & Inter-VLAN Routing [16 Marks]',
+    parts: [
+      {
+        id: 'q3_1',
+        text: '3.1 Explain the purpose of a native VLAN on a trunk link.',
+        marks: 2,
+        solution: `<h4>Model Answer</h4>
+        <p>The native VLAN is the VLAN that carries <strong>untagged</strong> traffic over an 802.1Q trunk. By default, it is VLAN 1. It is used to maintain backward compatibility with devices that do not support VLAN tagging. (Note: For security, it is best practice to change the native VLAN to an unused VLAN ID).</p>`
+      },
+      {
+        id: 'q3_2',
+        text: '3.2 Compare the three methods of Inter-VLAN routing (Legacy, Router-on-a-Stick, and Layer 3 Switch). Provide one advantage and one disadvantage for each.',
+        marks: 8,
+        solution: `<h4>Model Answer</h4>
+        <table>
+          <tr><th>Method</th><th>Description</th><th>Advantage</th><th>Disadvantage</th></tr>
+          <tr><td><strong>Legacy</strong></td><td>Multiple physical router interfaces, one per VLAN.</td><td>Simple to understand.</td><td>Not scalable; requires too much hardware.</td></tr>
+          <tr><td><strong>Router-on-a-Stick</strong></td><td>One physical interface with subinterfaces.</td><td>Cost-effective (only one cable needed).</td><td>Bottleneck; not scalable for large networks.</td></tr>
+          <tr><td><strong>Layer 3 Switch</strong></td><td>Routing handled internally via SVIs.</td><td>High performance (hardware routed).</td><td>Expensive to purchase.</td></tr>
+        </table>`
+      },
+      {
+        id: 'q3_3',
+        text: '3.3 What is the difference between a Data VLAN, a Voice VLAN, and a Management VLAN?',
+        marks: 6,
+        solution: `<h4>Model Answer</h4>
+        <ul>
+          <li><strong>Data VLAN:</strong> Used to carry user-generated traffic (emails, web browsing, file transfers).</li>
+          <li><strong>Voice VLAN:</strong> A separate VLAN specifically for VoIP (Voice over IP) traffic to ensure QoS (Quality of Service) and prioritize voice traffic over data.</li>
+          <li><strong>Management VLAN:</strong> A dedicated VLAN configured for managing network devices (SSH, Telnet, SNMP). It isolates administrative traffic for security.</li>
+        </ul>`
       }
     ]
   },
   {
     id: 'q4',
-    title: 'Question 4 — Wireless, Ethernet & Cabling [14 Marks]',
+    title: 'Question 4 — IPv6 & MAC Addressing [14 Marks]',
     parts: [
       {
         id: 'q4_1',
-        text: '4.1 What are the main differences between the 2.4 GHz and 5 GHz Wi-Fi bands in terms of coverage and data speed?',
+        text: '4.1 Use the EUI-64 process to generate the Interface ID for a PC with the MAC address 00:50:56:AB:CD:EF.',
         marks: 4,
         solution: `<h4>Model Answer</h4>
-        <table>
-          <tr><th>Band</th><th>Coverage / Range</th><th>Data Speed</th><th>Other notes</th></tr>
-          <tr><td><strong>2.4 GHz</strong></td><td>Longer range; better wall penetration</td><td>Lower maximum data rates</td><td>More interference (Bluetooth, microwaves); only 3 non-overlapping channels</td></tr>
-          <tr><td><strong>5 GHz</strong></td><td>Shorter range; less penetration</td><td>Higher data rates</td><td>Less interference; many more non-overlapping channels</td></tr>
-        </table>`
+        <ol>
+          <li>Split MAC: <code>00:50:56</code> | <code>AB:CD:EF</code></li>
+          <li>Insert <code>FF:FE</code>: <code>00:50:56:FF:FE:AB:CD:EF</code></li>
+          <li>Flip the 7th bit (U/L bit) of the first octet: <code>00 (0000 0000) → 02 (0000 0010)</code></li>
+          <li><strong>Interface ID: 0250:56FF:FEAB:CDEF</strong></li>
+        </ol>`
       },
       {
         id: 'q4_2',
-        text: '4.2 What is the purpose of padding in an Ethernet frame, and how does it affect the frame\'s structure?',
+        text: '4.2 If a router interface has the address 2001:DB8:CAFE:1::1/64, what is the complete IPv6 address of the PC using the Interface ID from 4.1?',
         marks: 2,
         solution: `<h4>Model Answer</h4>
-        <ul>
-          <li>Ethernet requires a <strong>minimum payload of 46 bytes</strong> (so the whole frame is at least 64 bytes).</li>
-          <li>If the payload is shorter, <strong>padding bytes</strong> are added to reach 46 bytes.</li>
-          <li>This ensures the frame is long enough for CSMA/CD collision detection (legacy shared media) and meets minimum timing/slot requirements.</li>
-          <li>Padding is included in the FCS calculation but discarded by the receiver.</li>
-        </ul>`
+        <p>Combine the /64 prefix with the Interface ID:</p>
+        <p><strong>2001:DB8:CAFE:1:0250:56FF:FEAB:CDEF</strong></p>`
       },
       {
         id: 'q4_3',
-        text: '4.3 What happens when a switch receives a runt frame?',
-        marks: 1,
+        text: '4.3 Compress the IPv6 address: 2001:0DB8:0000:0000:0000:0000:1428:57AB',
+        marks: 2,
         solution: `<h4>Model Answer</h4>
-        <p>The switch <strong>discards</strong> it. A runt frame is smaller than the 64-byte Ethernet minimum and is considered invalid/corrupted.</p>`
+        <p>Remove leading zeros and replace the longest sequence of zero blocks with <code>::</code>:</p>
+        <p><strong>2001:DB8::1428:57AB</strong></p>`
       },
       {
         id: 'q4_4',
-        text: '4.4 A company experiences intermittent connectivity with copper twisted-pair cabling. (a) Identify two common copper cabling problems. (b) For each, explain one solution or preventive measure.',
-        marks: 4,
+        text: '4.4 Explain how Stateless Address Autoconfiguration (SLAAC) works.',
+        marks: 6,
         solution: `<h4>Model Answer</h4>
-        <table>
-          <tr><th>Problem</th><th>Solution / Prevention</th></tr>
-          <tr><td><strong>EMI/RFI interference</strong> (from motors, fluorescent lights, power cables)</td><td>Use shielded twisted-pair (STP), proper grounding, route data cables away from power cables, or use fibre in high-interference areas.</td></tr>
-          <tr><td><strong>Crosstalk</strong> (signal bleeding between pairs)</td><td>Use Cat5e/Cat6 with correct twist rates, terminate properly, untwist no more than 13 mm, use factory-made patch cords.</td></tr>
-          <tr><td><em>Alternative:</em> <strong>Attenuation</strong> (signal loss over distance)</td><td>Keep runs under 100 m, use repeaters/switches, use higher-category cable.</td></tr>
-          <tr><td><em>Alternative:</em> <strong>Damaged connectors / poor termination</strong></td><td>Test with cable certifier, re-terminate, use quality connectors.</td></tr>
-        </table>`
-      },
-      {
-        id: 'q4_5',
-        text: '4.5 How does a switch learn MAC addresses and build its forwarding table?',
-        marks: 3,
-        solution: `<h4>Model Answer</h4>
-        <ol>
-          <li>When a frame arrives, the switch reads the <strong>source MAC address</strong> and records it in the MAC address table together with the ingress port and a timestamp.</li>
-          <li>If the <strong>destination MAC is known</strong>, the switch forwards the frame only out of the matching port (unicast forwarding).</li>
-          <li>If the destination MAC is <strong>unknown</strong>, the switch <strong>floods</strong> the frame out all ports except the ingress port (unknown unicast flooding).</li>
-          <li>Entries <strong>age out</strong> after a default period (≈300 s) if not refreshed.</li>
-          <li>Broadcast and multicast frames are flooded out all ports except the ingress.</li>
-        </ol>`
+        <ul>
+          <li>The host generates its own Interface ID (via EUI-64 or randomly).</li>
+          <li>The host sends a Router Solicitation (RS) message to find a router.</li>
+          <li>The router replies with a Router Advertisement (RA) containing the /64 prefix.</li>
+          <li>The host combines the prefix with its Interface ID to create a Global Unicast Address.</li>
+          <li>The host performs Duplicate Address Detection (DAD) to ensure no one else is using that address.</li>
+          <li>No DHCP server is required, making it "stateless".</li>
+        </ul>`
       }
     ]
   },
   {
     id: 'q5',
-    title: 'Question 5 — Subnetting, IPv6 & MAC [18 Marks]',
+    title: 'Question 5 — Switching & Routing [12 Marks]',
     parts: [
       {
         id: 'q5_1',
-        text: '5.1 Define subnetting.',
-        marks: 1,
+        text: '5.1 Explain how a switch builds its MAC address table (CAM table).',
+        marks: 3,
         solution: `<h4>Model Answer</h4>
-        <p>Subnetting is the process of dividing a larger network into smaller, more manageable logical sub-networks (subnets) by borrowing bits from the host portion of the address.</p>`
+        <p>When a frame enters a switch port, the switch examines the <strong>Source MAC address</strong> and records it in the MAC address table along with the port number it arrived on. If the destination MAC address is known, it forwards the frame to the specific port. If it is unknown, it floods the frame out of all other ports. Entries age out after a default period (usually 300 seconds) to keep the table accurate.</p>`
       },
       {
         id: 'q5_2',
-        text: '5.2 A small business has the network 192.168.10.0/24. If the network is divided into four equal subnets, determine the new subnet mask.',
-        marks: 2,
+        text: '5.2 Differentiate between Static Routing and Dynamic Routing.',
+        marks: 4,
         solution: `<h4>Model Answer</h4>
-        <p>4 subnets = 2² → borrow <strong>2 bits</strong> → new prefix = /26.</p>
-        <p><strong>New subnet mask = 255.255.255.192</strong></p>`
+        <ul>
+          <li><strong>Static Routing:</strong> Routes are manually configured by an administrator. They do not adapt to network changes automatically. Best for small networks.</li>
+          <li><strong>Dynamic Routing:</strong> Routes are learned automatically via routing protocols (OSPF, EIGRP, RIP). Routers share information and adapt to topology changes. Best for large, complex networks.</li>
+        </ul>`
       },
       {
         id: 'q5_3',
-        text: '5.3 List the network address and last usable host address of the <strong>second</strong> subnet.',
+        text: '5.3 What is the purpose of a Default Gateway on a host?',
         marks: 2,
         solution: `<h4>Model Answer</h4>
-        <p>Subnets: .0/26, .64/26, .128/26, .192/26</p>
-        <ul>
-          <li><strong>Network address of 2nd subnet = 192.168.10.64</strong></li>
-          <li>Broadcast = 192.168.10.127</li>
-          <li><strong>Last usable host = 192.168.10.126</strong></li>
-        </ul>`
+        <p>The default gateway is the IP address of the router interface connected to the host's network. It is used when the host needs to communicate with a device on a <strong>different network</strong> (i.e., outside its own subnet). The host sends the frame to the router's MAC address.</p>`
       },
       {
         id: 'q5_4',
-        text: '5.4 Explain why subnetting is helpful in a business environment.',
-        marks: 2,
-        solution: `<h4>Model Answer</h4>
-        <ul>
-          <li>Reduces the size of broadcast domains → better performance.</li>
-          <li>Improves security by isolating departments.</li>
-          <li>Efficient use of IP address space (less waste).</li>
-          <li>Easier to manage and troubleshoot.</li>
-          <li>Enables hierarchical addressing and routing.</li>
-        </ul>`
-      },
-      {
-        id: 'q5_5',
-        text: '5.5 Router RB has interface G0/1 configured with 2001:DB8:ACAD:A::1/64. PC-B has MAC address 00:1A:2B:3C:4D:5E. Use the EUI-64 process to generate the Interface ID for PC-B.',
-        marks: 2,
-        solution: `<h4>Model Answer</h4>
-        <ol>
-          <li>Split MAC: <code>00:1A:2B</code> | <code>3C:4D:5E</code></li>
-          <li>Insert <code>FF:FE</code> in the middle: <code>00:1A:2B:FF:FE:3C:4D:5E</code></li>
-          <li>Flip the 7th bit (U/L bit) of the first octet: <code>00 (0000 0000) → 02 (0000 0010)</code></li>
-          <li><strong>Interface ID = 021A:2BFF:FE3C:4D5E</strong></li>
-        </ol>`
-      },
-      {
-        id: 'q5_6',
-        text: '5.6 Create the full IPv6 address for PC-B (using the interface ID above).',
-        marks: 2,
-        solution: `<h4>Model Answer</h4>
-        <p>Prefix <code>2001:DB8:ACAD:A::/64</code> + Interface ID <code>021A:2BFF:FE3C:4D5E</code></p>
-        <p><strong>Full address = 2001:DB8:ACAD:A:021A:2BFF:FE3C:4D5E</strong></p>`
-      },
-      {
-        id: 'q5_7',
-        text: '5.7 Write the complete IPv6 address in proper compressed format.',
-        marks: 2,
-        solution: `<h4>Model Answer</h4>
-        <p>Remove leading zeros in <code>021A</code> → <code>21A</code> (no zero-compression possible elsewhere):</p>
-        <p><strong>2001:DB8:ACAD:A:21A:2BFF:FE3C:4D5E</strong></p>`
-      },
-      {
-        id: 'q5_8',
-        text: '5.8 Given the MAC address 84:2B:2B:6F:9A:D3: (a) What is the OUI portion? (b) What is the vendor-assigned portion?',
-        marks: 2,
-        solution: `<h4>Model Answer</h4>
-        <ul>
-          <li><strong>OUI (first 24 bits / 3 bytes): 84:2B:2B</strong></li>
-          <li><strong>Vendor-assigned (last 24 bits / 3 bytes): 6F:9A:D3</strong></li>
-        </ul>`
-      },
-      {
-        id: 'q5_9',
-        text: '5.9 Explain how Stateless Address Autoconfiguration (SLAAC) dynamically assigns IPv6 addresses to devices on a network.',
+        text: '5.4 What happens when a switch receives an unknown unicast frame?',
         marks: 3,
         solution: `<h4>Model Answer</h4>
-        <ul>
-          <li><strong>SLAAC</strong> lets a host build its own IPv6 address <em>without</em> a DHCPv6 server.</li>
-          <li>The router sends a <strong>Router Advertisement (RA)</strong> containing the /64 prefix (or the host sends a Router Solicitation first).</li>
-          <li>The host combines the <strong>/64 prefix</strong> with an <strong>Interface ID</strong> (EUI-64 from MAC or randomly generated).</li>
-          <li>The host performs <strong>Duplicate Address Detection (DAD)</strong> to ensure the address is unique.</li>
-          <li>Result: globally unique address; the RA also provides the default gateway. Because no server tracks state, it is <em>stateless</em> and highly scalable.</li>
-        </ul>`
+        <p>If a switch receives a frame with a destination MAC address that is not in its MAC address table, it will <strong>flood</strong> the frame out of all ports except the one it received the frame on. This is called unknown unicast flooding.</p>`
       }
     ]
   },
   {
     id: 'q6',
-    title: 'Question 6 — VLANs [12 Marks]',
+    title: 'Question 6 — TCP, UDP & Application Layer [12 Marks]',
     parts: [
       {
-        id: 'q6_0',
-        text: 'Refer to the exhibit below for all parts of Question 6.',
-        marks: 0,
-        solution: `<h4>Topology Description</h4>
-        <div class="topology-box">
-        R1 (G0/0/1) ─── F0/5 ─── S1 ─── F0/1 ─── F0/1 ─── S2 ─── F0/18 ─── PC2 (VLAN 20)
-                                    │
-                                  F0/6
-                                    │
-                                  PC1 (VLAN 10)
-        </div>
-        <p>PC1 is in VLAN 10. PC2 is in VLAN 20. R1 provides inter-VLAN routing.</p>`
-      },
-      {
         id: 'q6_1',
-        text: '6.1 Explain the difference between a trunk port and an access port in the context of VLANs.',
-        marks: 2,
+        text: '6.1 Describe the TCP 3-way handshake process. What is its purpose?',
+        marks: 4,
         solution: `<h4>Model Answer</h4>
-        <ul>
-          <li><strong>Access port:</strong> Carries traffic for a <em>single</em> VLAN; typically connects to end devices (PC, printer, phone).</li>
-          <li><strong>Trunk port:</strong> Carries traffic for <em>multiple</em> VLANs simultaneously using 802.1Q tagging; typically connects switches together, or a switch to a router (router-on-a-stick).</li>
-        </ul>`
+        <p><strong>Purpose:</strong> To establish a reliable, connection-oriented session between two devices before data is transmitted.</p>
+        <ol>
+          <li><strong>SYN:</strong> The client sends a segment with the SYN flag set to request a connection.</li>
+          <li><strong>SYN-ACK:</strong> The server responds with both SYN and ACK flags set to acknowledge the request and synchronize sequence numbers.</li>
+          <li><strong>ACK:</strong> The client sends an ACK back to the server to confirm the connection is established.</li>
+        </ol>`
       },
       {
         id: 'q6_2',
-        text: '6.2 Identify all ports that should be configured as access ports.',
-        marks: 2,
+        text: '6.2 Compare TCP and UDP in terms of reliability, connection setup, and use cases.',
+        marks: 4,
         solution: `<h4>Model Answer</h4>
-        <ul>
-          <li><strong>S1 F0/6</strong> (connects to PC1, VLAN 10)</li>
-          <li><strong>S2 F0/18</strong> (connects to PC2, VLAN 20)</li>
-        </ul>`
+        <table>
+          <tr><th></th><th>TCP</th><th>UDP</th></tr>
+          <tr><td><strong>Reliability</strong></td><td>Reliable (ACKs, retransmissions, sequencing)</td><td>Unreliable / Best-effort</td></tr>
+          <tr><td><strong>Connection</strong></td><td>Connection-oriented (3-way handshake)</td><td>Connectionless</td></tr>
+          <tr><td><strong>Use Cases</strong></td><td>HTTP, FTP, Email, SSH</td><td>DNS, DHCP, VoIP, Streaming</td></tr>
+        </table>`
       },
       {
         id: 'q6_3',
-        text: '6.3 Identify all ports that should be configured as trunk ports.',
+        text: '6.3 Explain the difference between POP3 and IMAP email protocols.',
         marks: 2,
         solution: `<h4>Model Answer</h4>
         <ul>
-          <li><strong>S1 F0/5</strong> — link to router R1 (carries VLAN 10 and 20 to subinterfaces).</li>
-          <li><strong>S1 F0/1</strong> — inter-switch link to S2.</li>
-          <li><strong>S2 F0/1</strong> — inter-switch link to S1.</li>
+          <li><strong>POP3:</strong> Downloads emails to a single device and (by default) deletes them from the server. Best for single-device use.</li>
+          <li><strong>IMAP:</strong> Keeps emails synchronized on the server. Changes made on one device are reflected on all devices. Best for multi-device use.</li>
         </ul>`
       },
       {
         id: 'q6_4',
-        text: '6.4 Define inter-VLAN routing.',
-        marks: 1,
-        solution: `<h4>Model Answer</h4>
-        <p><strong>Inter-VLAN routing</strong> is the process of forwarding traffic between different VLANs. It requires a Layer 3 device (router or Layer 3 switch) because VLANs are separate broadcast domains.</p>`
-      },
-      {
-        id: 'q6_5',
-        text: '6.5 Identify the inter-VLAN routing method that should be configured in this topology and justify your answer.',
-        marks: 3,
-        solution: `<h4>Model Answer</h4>
-        <p><strong>Method: Router-on-a-stick (single-arm router).</strong></p>
-        <p><strong>Justification:</strong> Only one physical router interface (R1 G0/0/1) connects to S1. Configuring subinterfaces on G0/0/1 — one for VLAN 10 and one for VLAN 20 — lets the router act as the default gateway for both VLANs. This is the most cost-effective solution for a small network with few VLANs and limited hardware.</p>`
-      },
-      {
-        id: 'q6_6',
-        text: '6.6 Explain one advantage and one disadvantage of the inter-VLAN routing method you identified above.',
+        text: '6.4 How does TCP use flow control to prevent network congestion?',
         marks: 2,
         solution: `<h4>Model Answer</h4>
-        <ul>
-          <li><strong>Advantage:</strong> Cost-effective — only one physical router interface is needed to route between many VLANs; simple to configure for small networks.</li>
-          <li><strong>Disadvantage:</strong> Not scalable — all inter-VLAN traffic must traverse the single physical link into the router, creating a bottleneck; the router CPU processes every packet (no hardware switching).</li>
-        </ul>`
-      }
-    ]
-  },
-  {
-    id: 'q7',
-    title: 'Question 7 — Protocols & Transport Layer [16 Marks]',
-    parts: [
-      {
-        id: 'q7_1',
-        text: '7.1 A user reports that emails initially viewed on their smartphone are inaccessible on their laptop. (a) Explain the likely cause based on the email protocols involved. (b) Devise a plan to resolve the problem.',
-        marks: 3,
-        solution: `<h4>Model Answer</h4>
-        <p><strong>(a) Likely cause:</strong> The smartphone is configured with <strong>POP3</strong>. By default POP3 <em>downloads</em> mail to the device and <em>removes it from the server</em>. So the laptop cannot see those messages — they no longer exist on the mail server.</p>
-        <p><strong>(b) Plan:</strong></p>
-        <ul>
-          <li>Reconfigure <em>both</em> devices to use <strong>IMAP</strong> (or IMAP over SSL, port 993), which keeps mail synchronised on the server so all devices see the same mailbox.</li>
-          <li>If POP3 must be used, enable the "<em>leave a copy of messages on the server</em>" option on every device.</li>
-          <li>Verify account settings (server names, ports, SSL/TLS) on both devices.</li>
-        </ul>`
-      },
-      {
-        id: 'q7_2',
-        text: '7.2 Discuss the role of DHCP and DNS in a network.',
-        marks: 4,
-        solution: `<h4>Model Answer</h4>
-        <p><strong>DHCP (Dynamic Host Configuration Protocol):</strong></p>
-        <ul>
-          <li>Automatically assigns IP addresses, subnet mask, default gateway, and DNS server(s) to hosts when they join the network.</li>
-          <li>Uses the <strong>DORA</strong> process: Discover → Offer → Request → Acknowledge.</li>
-          <li>Prevents duplicate addresses, reduces manual configuration errors, and leases addresses from a managed pool.</li>
-        </ul>
-        <p><strong>DNS (Domain Name System):</strong></p>
-        <ul>
-          <li>Translates human-friendly <strong>domain names</strong> (e.g. www.example.com) into IP addresses.</li>
-          <li>Uses a hierarchical, distributed database of name servers.</li>
-          <li>Essential for web browsing and almost every internet service; without DNS users would have to remember IP addresses.</li>
-        </ul>`
-      },
-      {
-        id: 'q7_3',
-        text: '7.3 Compare TCP and UDP in terms of: (a) reliability and connection setup, (b) real-world use cases, (c) header overhead and performance.',
-        marks: 5,
-        solution: `<h4>Model Answer</h4>
-        <table>
-          <tr><th></th><th>TCP</th><th>UDP</th></tr>
-          <tr><td><strong>(a) Reliability &amp; setup</strong></td><td>Connection-oriented (3-way handshake); reliable — ACKs, retransmissions, sequencing, flow control</td><td>Connectionless; best-effort — no ACK, no retransmission, no ordering</td></tr>
-          <tr><td><strong>(b) Use cases</strong></td><td>HTTP/HTTPS, FTP, SMTP/POP3/IMAP, SSH, Telnet</td><td>DNS, DHCP, VoIP, video streaming, online gaming, TFTP, SNMP</td></tr>
-          <tr><td><strong>(c) Overhead &amp; performance</strong></td><td>20–60 byte header; more overhead; slower but reliable</td><td>8-byte header; minimal overhead; faster, lower latency</td></tr>
-        </table>`
-      },
-      {
-        id: 'q7_4',
-        text: '7.4 Discuss how TCP uses flow control and error handling to ensure reliable data transmission.',
-        marks: 4,
-        solution: `<h4>Model Answer</h4>
-        <p><strong>Flow control:</strong></p>
-        <ul>
-          <li>The TCP header carries a <strong>window size</strong> that tells the sender how much data the receiver can accept.</li>
-          <li><strong>Sliding window</strong> allows the sender to transmit multiple segments before waiting for an ACK.</li>
-          <li>If the receiver's buffer fills, it advertises a smaller window (even zero) to pause transmission — preventing buffer overflow.</li>
-        </ul>
-        <p><strong>Error handling:</strong></p>
-        <ul>
-          <li><strong>Sequence numbers</strong> let the receiver reorder out-of-order segments and detect missing ones.</li>
-          <li><strong>ACKs</strong> confirm receipt; if an ACK is not received within a timeout, the sender <strong>retransmits</strong>.</li>
-          <li>The <strong>checksum</strong> detects corrupted segments, which are discarded.</li>
-          <li><strong>Fast retransmission</strong> on three duplicate ACKs speeds up recovery of lost segments.</li>
-        </ul>`
+        <p>TCP uses a <strong>sliding window</strong> mechanism. The receiver advertises a "window size" in the TCP header, telling the sender how much data it can accept. If the receiver's buffer fills up, it advertises a smaller window (or a zero window) to pause the sender, preventing buffer overflow and network congestion.</p>`
       }
     ]
   }
@@ -801,7 +686,6 @@ function renderMC() {
     `;
     container.appendChild(div);
   });
-  // highlight selected
   document.querySelectorAll('.options input').forEach(inp => {
     inp.addEventListener('change', function () {
       const name = this.name;
@@ -864,7 +748,7 @@ function renderStructured() {
       `;
     });
     div.innerHTML = `
-      <div style="font-size:1.05em; font-weight:700; color:#93c5fd; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid #334155;">
+      <div style="font-size:1.05em; font-weight:700; color:#38bdf8; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid #334155;">
         ${q.title}
       </div>
       ${partsHTML}
@@ -894,7 +778,6 @@ function markAuto() {
       const checked = [...document.querySelectorAll(`input[name="${q.id}"]:checked`)].map(el => el.value).sort();
       const expected = [...q.correct].sort();
       correct = JSON.stringify(checked) === JSON.stringify(expected);
-      // partial credit: 1 mark per correct selection
       let partial = 0;
       checked.forEach(v => { if (q.correct.includes(v)) partial++; });
       if (!correct) total += Math.max(0, partial - (checked.length - partial));
@@ -953,7 +836,6 @@ function markAuto() {
 
 function showAllSolutions() {
   document.querySelectorAll('.solution').forEach(el => el.classList.add('show'));
-  // also reveal MC explanations
   mcQuestions.forEach(q => {
     const fb = document.getElementById('fb-' + q.id);
     fb.className = 'feedback correct';
@@ -977,7 +859,6 @@ function resetAll() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-/* progress bar */
 window.addEventListener('scroll', () => {
   const h = document.documentElement;
   const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
