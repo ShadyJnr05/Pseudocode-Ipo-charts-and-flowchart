@@ -3,1096 +3,993 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Module 4 – IPO Charts & Flowcharts | Modau.M IT</title>
+<title>CON26W0 – Practice Exam 2026</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
-
-  :root {
-    --bg: #0d0f14;
-    --surface: #161920;
-    --card: #1c2030;
-    --border: #2a2f3e;
-    --accent: #00d4ff;
-    --accent2: #7c3aed;
-    --accent3: #10b981;
-    --warn: #f59e0b;
-    --text: #e2e8f0;
-    --muted: #64748b;
-    --code-bg: #111318;
-    --ipo-input: #1a3a4a;
-    --ipo-proc: #1a2a3a;
-    --ipo-out: #1a3a2a;
-  }
-  body.light {
-    --bg: #f1f5f9;
-    --surface: #ffffff;
-    --card: #ffffff;
-    --border: #e2e8f0;
-    --accent: #0284c7;
-    --accent2: #7c3aed;
-    --accent3: #059669;
-    --warn: #d97706;
-    --text: #0f172a;
-    --muted: #64748b;
-    --code-bg: #f8fafc;
-    --ipo-input: #e0f2fe;
-    --ipo-proc: #ede9fe;
-    --ipo-out: #d1fae5;
-  }
-  body.light .ipo-table thead .th-input { background:#bae6fd; color:#0c4a6e; }
-  body.light .ipo-table thead .th-proc  { background:#ddd6fe; color:#3b0764; }
-  body.light .ipo-table thead .th-out   { background:#a7f3d0; color:#064e3b; }
-  body.light .ipo-table tbody .td-input { background:#e0f2fe; color:#075985; }
-  body.light .ipo-table tbody .td-proc  { background:#ede9fe; color:#4c1d95; }
-  body.light .ipo-table tbody .td-out   { background:#d1fae5; color:#065f46; }
-  body.light .pseudo { background:#f1f5f9; border-color:#cbd5e1; }
-  body.light .callout { background:#e0f2fe; border-color:#0284c7; }
-  body.light .callout.warn { background:#fef9c3; border-color:#d97706; }
-  body.light .callout.green { background:#d1fae5; border-color:#059669; }
-  body.light .callout p { color:#334155; }
-  body.light .card p, body.light .card li { color:#475569; }
-  body.light .tab { color:#64748b; }
-  body.light .tab.active { color:#0284c7; border-bottom-color:#0284c7; }
-  body.light .flowchart-wrap { background:#f8fafc; }
-
-  /* toggle button */
-  .theme-toggle {
-    margin-left: auto;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    padding: .35rem .9rem;
-    cursor: pointer;
-    font-size: .8rem;
-    color: var(--text);
-    display: flex; align-items: center; gap: .4rem;
-    transition: all .2s;
-    white-space: nowrap;
-  }
-  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
-    font-family: 'Inter', sans-serif;
-    background: var(--bg);
-    color: var(--text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #e2e8f0;
+    line-height: 1.6;
+    padding: 20px;
     min-height: 100vh;
   }
-
-  /* ── HEADER ── */
+  .container { max-width: 950px; margin: 0 auto; }
   header {
-    border-bottom: 1px solid var(--border);
-    padding: 1rem 2rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    background: var(--surface);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    text-align: center;
+    padding: 30px 20px;
+    background: linear-gradient(135deg, #1e40af, #7c3aed);
+    border-radius: 16px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   }
-  .logo { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-size: .85rem; font-weight: 700; }
-  header h1 { font-size: 1rem; font-weight: 600; color: var(--text); }
-  header span { color: var(--muted); font-size: .8rem; }
+  header h1 { font-size: 1.8em; margin-bottom: 8px; color: #fff; }
+  header p { color: #cbd5e1; font-size: 0.95em; }
+  header .meta { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 12px; font-size: 0.85em; }
+  header .meta span { background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; }
 
-  /* ── TABS ── */
-  .tabs {
-    display: flex;
-    gap: 0;
-    border-bottom: 1px solid var(--border);
-    background: var(--surface);
-    padding: 0 2rem;
-    overflow-x: auto;
-  }
-  .tab {
-    padding: .75rem 1.5rem;
-    cursor: pointer;
-    font-size: .875rem;
-    font-weight: 500;
-    color: var(--muted);
-    border-bottom: 2px solid transparent;
-    white-space: nowrap;
-    transition: all .2s;
-  }
-  .tab:hover { color: var(--text); }
-  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
-
-  /* ── MAIN ── */
-  main { max-width: 960px; margin: 0 auto; padding: 2rem; }
-
-  .section { display: none; }
-  .section.active { display: block; }
-
-  /* ── SECTION HEADING ── */
-  .section-heading {
-    margin-bottom: 2rem;
-  }
-  .section-heading .eyebrow {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: .7rem;
-    color: var(--accent);
-    letter-spacing: .15em;
-    text-transform: uppercase;
-    margin-bottom: .5rem;
-  }
-  .section-heading h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: .5rem; }
-  .section-heading p { color: var(--muted); font-size: .9rem; line-height: 1.6; }
-
-  /* ── CARDS ── */
-  .card {
-    background: var(--card);
-    border: 1px solid var(--border);
+  .instructions {
+    background: #1e293b;
+    border-left: 4px solid #3b82f6;
+    padding: 18px 22px;
     border-radius: 10px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 25px;
+    font-size: 0.92em;
   }
-  .card h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: .75rem;
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-  }
-  .card p, .card li { font-size: .875rem; color: #a0aec0; line-height: 1.7; }
-  .card ul { padding-left: 1.25rem; }
-  .card ul li { margin-bottom: .3rem; }
+  .instructions h3 { color: #60a5fa; margin-bottom: 8px; font-size: 1em; }
+  .instructions ul { margin-left: 20px; }
+  .instructions li { margin: 4px 0; }
 
-  .tag {
+  .section-title {
+    background: linear-gradient(90deg, #1e40af, #3b82f6);
+    padding: 14px 22px;
+    border-radius: 10px;
+    margin: 30px 0 20px;
+    font-size: 1.15em;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(59,130,246,0.3);
+  }
+
+  .question {
+    background: #1e293b;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 18px;
+    border: 1px solid #334155;
+    transition: border-color 0.3s;
+  }
+  .question:hover { border-color: #3b82f6; }
+  .q-text { font-weight: 600; margin-bottom: 14px; font-size: 1.02em; color: #f1f5f9; }
+  .q-marks {
     display: inline-block;
-    padding: .15rem .6rem;
-    border-radius: 999px;
-    font-size: .7rem;
-    font-weight: 700;
-    font-family: 'JetBrains Mono', monospace;
+    background: #7c3aed;
+    color: #fff;
+    font-size: 0.75em;
+    padding: 2px 10px;
+    border-radius: 12px;
+    margin-left: 8px;
+    vertical-align: middle;
   }
-  .tag-blue { background: #0e2a38; color: var(--accent); }
-  .tag-purple { background: #1e1040; color: #a78bfa; }
-  .tag-green { background: #0a2a1e; color: var(--accent3); }
-
-  /* ── CALLOUT ── */
-  .callout {
-    border-left: 3px solid var(--accent);
-    background: #0e2030;
-    border-radius: 0 8px 8px 0;
-    padding: 1rem 1.25rem;
-    margin-bottom: 1rem;
-  }
-  .callout.warn { border-color: var(--warn); background: #1a150a; }
-  .callout.green { border-color: var(--accent3); background: #0a1a14; }
-  .callout p { font-size: .875rem; color: #a0aec0; line-height: 1.6; }
-  .callout strong { color: var(--text); }
-
-  /* ── IPO TABLE ── */
-  .ipo-table {
-    width: 100%;
-    border-collapse: collapse;
-    border-radius: 8px;
-    overflow: hidden;
-    margin: 1rem 0;
-    font-size: .875rem;
-  }
-  .ipo-table thead th {
-    padding: .75rem 1rem;
-    text-align: left;
-    font-weight: 700;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: .05em;
-    font-size: .75rem;
-  }
-  .ipo-table thead .th-input { background: #1a4a5a; color: #7dd3fc; }
-  .ipo-table thead .th-proc  { background: #1a1a5a; color: #a5b4fc; }
-  .ipo-table thead .th-out   { background: #0a3a2a; color: #6ee7b7; }
-  .ipo-table tbody td {
-    padding: .8rem 1rem;
-    vertical-align: top;
-    border-top: 1px solid var(--border);
-    font-family: 'JetBrains Mono', monospace;
-    line-height: 1.8;
-  }
-  .ipo-table tbody .td-input { background: var(--ipo-input); color: #bae6fd; }
-  .ipo-table tbody .td-proc  { background: var(--ipo-proc);  color: #c7d2fe; }
-  .ipo-table tbody .td-out   { background: var(--ipo-out);   color: #a7f3d0; }
-
-  /* ── PSEUDOCODE BLOCK ── */
-  .pseudo {
-    background: var(--code-bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.25rem 1.5rem;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: .8rem;
-    line-height: 2;
-    overflow-x: auto;
-    margin: 1rem 0;
-  }
-  .kw  { color: #c084fc; font-weight: 700; }
-  .typ { color: #fb923c; }
-  .str { color: #86efac; }
-  .var { color: #67e8f9; }
-  .com { color: var(--muted); font-style: italic; }
-  .op  { color: #f9a8d4; }
-  .indent { padding-left: 2rem; }
-
-  /* ── FLOWCHART SVG ── */
-  .flowchart-wrap {
-    background: #10141e;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1.5rem;
-    margin: 1rem 0;
-    overflow-x: auto;
-    text-align: center;
-  }
-  .flowchart-wrap svg { max-width: 100%; }
-
-  /* ── SYMBOL LEGEND ── */
-  .legend-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 1rem;
-    margin: 1rem 0;
-  }
-  .legend-item {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1rem;
-    text-align: center;
-  }
-  .legend-item svg { width: 80px; height: 50px; margin-bottom: .5rem; }
-  .legend-item .lname { font-size: .8rem; font-weight: 600; color: var(--text); }
-  .legend-item .luse  { font-size: .72rem; color: var(--muted); margin-top: .25rem; }
-
-  /* ── STEP BOX ── */
-  .steps { counter-reset: step; }
-  .step {
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .options label {
     display: flex;
-    gap: 1rem;
-    margin-bottom: 1.25rem;
     align-items: flex-start;
-  }
-  .step-num {
-    counter-increment: step;
-    flex-shrink: 0;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    background: var(--accent2);
-    color: white;
-    font-weight: 700;
-    font-size: .8rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: .2rem;
-  }
-  .step-num::before { content: counter(step); }
-  .step-body { flex: 1; }
-  .step-body strong { display: block; font-size: .875rem; margin-bottom: .25rem; }
-  .step-body p { font-size: .82rem; color: var(--muted); line-height: 1.5; }
-
-  /* ── PROGRAM DEV CYCLE DIAGRAM ── */
-  .cycle-row {
-    display: flex;
-    gap: 1rem;
-    margin: 1rem 0;
-    flex-wrap: wrap;
-  }
-  .cycle-box {
-    flex: 1;
-    min-width: 140px;
-    background: var(--card);
-    border: 1px solid var(--border);
+    gap: 10px;
+    padding: 10px 14px;
+    background: #0f172a;
     border-radius: 8px;
-    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid #334155;
+    font-size: 0.95em;
   }
-  .cycle-box .num { font-size: 1.5rem; font-weight: 700; color: var(--accent); font-family: 'JetBrains Mono', monospace; }
-  .cycle-box h4 { font-size: .9rem; font-weight: 600; margin: .25rem 0; }
-  .cycle-box ul { font-size: .75rem; color: var(--muted); padding-left: 1rem; line-height: 1.8; }
-  .cycle-arrow { display: flex; align-items: center; color: var(--muted); font-size: 1.5rem; }
+  .options label:hover { background: #1e3a5f; border-color: #3b82f6; }
+  .options input[type="radio"], .options input[type="checkbox"] { margin-top: 4px; accent-color: #3b82f6; transform: scale(1.2); }
+  .options label.selected { background: #1e3a5f; border-color: #3b82f6; }
 
-  /* ── FOOTER ── */
-  footer {
+  input[type="text"], textarea, select {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    color: #e2e8f0;
+    padding: 10px 14px;
+    font-size: 0.95em;
+    width: 100%;
+    font-family: inherit;
+    transition: border-color 0.2s;
+  }
+  input[type="text"]:focus, textarea:focus { outline: none; border-color: #3b82f6; }
+  textarea { resize: vertical; min-height: 90px; }
+  .short-answer { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .short-answer input { flex: 1; min-width: 200px; }
+
+  .match-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9em; }
+  .match-table td { padding: 6px 8px; border-bottom: 1px solid #334155; }
+  .match-table td:first-child { width: 60%; }
+  .match-table input { width: 70px; text-align: center; text-transform: uppercase; }
+
+  .btn-row { display: flex; gap: 14px; justify-content: center; margin: 35px 0 20px; flex-wrap: wrap; }
+  .btn {
+    padding: 14px 32px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  }
+  .btn-mark { background: linear-gradient(135deg, #16a34a, #22c55e); }
+  .btn-mark:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(34,197,94,0.5); }
+  .btn-solution { background: linear-gradient(135deg, #dc2626, #f97316); }
+  .btn-solution:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(249,115,22,0.5); }
+  .btn-reset { background: linear-gradient(135deg, #475569, #64748b); }
+  .btn-reset:hover { transform: translateY(-2px); }
+
+  .result-box {
+    background: #1e293b;
+    border: 2px solid #334155;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 20px 0;
     text-align: center;
-    padding: 2rem;
-    color: var(--muted);
-    font-size: .75rem;
-    border-top: 1px solid var(--border);
-    margin-top: 3rem;
-    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.1em;
+    display: none;
+  }
+  .result-box.show { display: block; animation: fadeIn 0.4s; }
+  .result-box .score { font-size: 2em; font-weight: bold; color: #22c55e; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+  .feedback { font-size: 0.85em; margin-top: 8px; padding: 6px 12px; border-radius: 6px; display: none; }
+  .feedback.correct { display: block; background: rgba(34,197,94,0.15); color: #4ade80; border-left: 3px solid #22c55e; }
+  .feedback.incorrect { display: block; background: rgba(239,68,68,0.15); color: #f87171; border-left: 3px solid #ef4444; }
+
+  .solution {
+    display: none;
+    margin-top: 16px;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, rgba(30,64,175,0.3), rgba(124,58,237,0.2));
+    border-left: 4px solid #7c3aed;
+    border-radius: 8px;
+    font-size: 0.92em;
+  }
+  .solution.show { display: block; animation: fadeIn 0.4s; }
+  .solution h4 { color: #a78bfa; margin-bottom: 8px; font-size: 0.95em; }
+  .solution p, .solution li { margin: 5px 0; }
+  .solution ul { margin-left: 18px; }
+  .solution table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.88em; }
+  .solution th, .solution td { padding: 7px 10px; border: 1px solid #475569; text-align: left; }
+  .solution th { background: #1e3a5f; color: #93c5fd; }
+  .solution code { background: #0f172a; padding: 2px 6px; border-radius: 4px; font-family: 'Courier New', monospace; color: #fbbf24; }
+
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    width: 0%; z-index: 999; transition: width 0.2s;
   }
 
-  /* ── RESPONSIVE ── */
-  @media(max-width: 600px) {
-    main { padding: 1rem; }
-    .cycle-arrow { display: none; }
+  .topology-box {
+    background: #0f172a;
+    border: 2px dashed #475569;
+    border-radius: 10px;
+    padding: 16px;
+    margin: 12px 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85em;
+    color: #93c5fd;
+    white-space: pre;
+    overflow-x: auto;
+  }
+
+  @media (max-width: 600px) {
+    body { padding: 10px; }
+    header h1 { font-size: 1.3em; }
+    .question { padding: 15px; }
+    .btn { padding: 12px 20px; font-size: 0.9em; }
   }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="logo">MODAU.M IT</div>
-  <div>
-    <div style="display:flex;align-items:center;gap:.75rem;">
-      <h1>Module 4 — IPO Charts &amp; Flowcharts</h1>
-      <span class="tag tag-blue">Dev Software 1</span>
-    </div>
-    <span>Walter Sisulu University · ICT · CNET</span>
-  </div>
-  <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">☀️ Light</button>
-</header>
+<div class="progress-bar" id="progressBar"></div>
 
-<div class="tabs">
-  <div class="tab active" onclick="switchTab('pseudocode')">Pseudocode Basics</div>
-  <div class="tab" onclick="switchTab('ipo')">IPO Charts</div>
-  <div class="tab" onclick="switchTab('flowcharts')">Flowcharts</div>
-  <div class="tab" onclick="switchTab('examples')">Full Examples</div>
+<div class="container">
+  <header>
+    <h1>📡 Communication Networks II – Practice Exam 2026</h1>
+    <p>CON26W0 / DCN26W0 — Walter Sisulu University (Practice Paper)</p>
+    <div class="meta">
+      <span>⏱ 3 Hours</span>
+      <span>📝 100 Marks</span>
+      <span>📚 7 Questions</span>
+    </div>
+  </header>
+
+  <div class="instructions">
+    <h3>📋 Instructions</h3>
+    <ul>
+      <li>Answer ALL questions.</li>
+      <li><strong>Section A</strong> (Multiple Choice) and <strong>Section B</strong> (One-Word Answers) are auto-marked.</li>
+      <li><strong>Section C</strong> (Structured Questions) — write your answers, then click "Show All Solutions" to compare.</li>
+      <li>Click <strong>"Mark Auto-Graded Questions"</strong> to score Sections A &amp; B.</li>
+    </ul>
+  </div>
+
+  <!-- ================= SECTION A ================= -->
+  <div class="section-title">SECTION A: Multiple Choice (10 × 1 = 10 Marks)</div>
+  <div id="sectionA"></div>
+
+  <!-- ================= SECTION B ================= -->
+  <div class="section-title">SECTION B: One-Word / Short Answer (10 Marks)</div>
+  <div id="sectionB"></div>
+
+  <!-- ================= SECTION C ================= -->
+  <div class="section-title">SECTION C: Structured Questions (80 Marks)</div>
+  <div id="sectionC"></div>
+
+  <div class="btn-row">
+    <button class="btn btn-mark" onclick="markAuto()">✅ Mark Auto-Graded Questions</button>
+    <button class="btn btn-solution" onclick="showAllSolutions()">📖 Show All Solutions</button>
+    <button class="btn btn-reset" onclick="resetAll()">🔄 Reset</button>
+  </div>
+
+  <div class="result-box" id="resultBox">
+    <div>Auto-Graded Score (Sections A &amp; B)</div>
+    <div class="score" id="scoreDisplay">0 / 20</div>
+    <div style="font-size:0.85em; color:#94a3b8; margin-top:8px;">Structured questions (80 marks) require manual assessment — use "Show All Solutions" to compare.</div>
+  </div>
+
+  <footer style="text-align:center; padding:30px 0; color:#64748b; font-size:0.85em;">
+    Based on CON26W0 past papers (2023–2025) • CCNA ITN &amp; SRWE aligned
+  </footer>
 </div>
-
-<main>
-
-<!-- ════════════════════════════════ PSEUDOCODE ════════════════════════════════ -->
-<div id="tab-pseudocode" class="section active">
-  <div class="section-heading">
-    <div class="eyebrow">// 00 — revision</div>
-    <h2>Pseudocode &amp; the Program Development Cycle</h2>
-    <p>Before writing code or drawing flowcharts, developers use pseudocode to plan logic in plain structured English.</p>
-  </div>
-
-  <div class="cycle-row">
-    <div class="cycle-box">
-      <div class="num">1</div>
-      <h4>ANALYSIS</h4>
-      <ul>
-        <li>Understand the problem</li>
-        <li>Identify inputs &amp; outputs</li>
-        <li>What processing is needed?</li>
-        <li>Talk to users &amp; dev team</li>
-        <li>Tools: <strong>IPO Charts</strong></li>
-      </ul>
-    </div>
-    <div class="cycle-arrow">→</div>
-    <div class="cycle-box">
-      <div class="num">2</div>
-      <h4>DESIGN</h4>
-      <ul>
-        <li>Work out the algorithm</li>
-        <li>Test the algorithm</li>
-        <li>Design the UI &amp; data sources</li>
-        <li>Tools: <strong>Flowcharts, Pseudocode, Trace tables</strong></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="card" style="margin-top:2rem;">
-    <h3><span class="tag tag-purple">RULES</span> &nbsp;WSU Pseudocode Conventions</h3>
-    <div class="callout" style="margin-top:.75rem;">
-      <p>At WSU, pseudocode always starts with <strong>BEGIN</strong>, ends with <strong>END</strong>, and uses capital keywords. Variables must be <strong>DECLARE</strong>d before use.</p>
-    </div>
-    <div class="pseudo">
-<span class="kw">BEGIN</span>
-  <span class="com">-- Declare ALL variables first (group them)</span>
-  <span class="kw">DECLARE</span> <span class="var">VARIABLE1</span> <span class="kw">AS</span> <span class="typ">STRING</span>
-  <span class="kw">DECLARE</span> <span class="var">NUMBER1</span><span class="op">,</span> <span class="var">NUMBER2</span> <span class="kw">AS</span> <span class="typ">REAL</span>
-  <span class="kw">DECLARE</span> <span class="var">TOTAL</span> <span class="kw">AS</span> <span class="typ">REAL</span>
-
-  <span class="com">-- Input</span>
-  <span class="kw">DISPLAY</span> <span class="str">"Enter a value: "</span>
-  <span class="kw">ACCEPT</span> <span class="var">NUMBER1</span>
-
-  <span class="com">-- Processing</span>
-  <span class="var">TOTAL</span> <span class="op">=</span> <span class="var">NUMBER1</span> <span class="op">+</span> <span class="var">NUMBER2</span>
-
-  <span class="com">-- Output</span>
-  <span class="kw">DISPLAY</span> <span class="str">"The total is "</span> <span class="var">TOTAL</span>
-<span class="kw">END</span>
-    </div>
-  </div>
-
-  <div class="card">
-    <h3><span class="tag tag-blue">KEYWORDS</span> &nbsp;Essential Pseudocode Keywords</h3>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.75rem;margin-top:.75rem;">
-      <div style="background:var(--code-bg);border:1px solid var(--border);border-radius:6px;padding:.75rem;">
-        <div class="tag tag-purple" style="margin-bottom:.5rem;">STRUCTURE</div>
-        <div class="pseudo" style="margin:0;font-size:.78rem;line-height:1.9;">
-<span class="kw">BEGIN</span>
-<span class="kw">END</span>
-<span class="kw">DECLARE</span> x <span class="kw">AS</span> <span class="typ">REAL</span>
-<span class="kw">DECLARE</span> x <span class="kw">AS</span> <span class="typ">INTEGER</span>
-<span class="kw">DECLARE</span> x <span class="kw">AS</span> <span class="typ">STRING</span>
-        </div>
-      </div>
-      <div style="background:var(--code-bg);border:1px solid var(--border);border-radius:6px;padding:.75rem;">
-        <div class="tag tag-blue" style="margin-bottom:.5rem;">INPUT / OUTPUT</div>
-        <div class="pseudo" style="margin:0;font-size:.78rem;line-height:1.9;">
-<span class="kw">ACCEPT</span> <span class="var">variableName</span>
-<span class="kw">DISPLAY</span> <span class="str">"message"</span>
-<span class="kw">DISPLAY</span> <span class="str">"text"</span> <span class="var">variable</span>
-<span class="kw">OUTPUT</span> <span class="var">variableName</span>
-        </div>
-      </div>
-      <div style="background:var(--code-bg);border:1px solid var(--border);border-radius:6px;padding:.75rem;">
-        <div class="tag tag-green" style="margin-bottom:.5rem;">SELECTION</div>
-        <div class="pseudo" style="margin:0;font-size:.78rem;line-height:1.9;">
-<span class="kw">IF</span> <span class="var">condition</span> <span class="kw">THEN</span>
-  <span class="indent">statements</span>
-<span class="kw">ELSE</span>
-  <span class="indent">statements</span>
-<span class="kw">ENDIF</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="callout warn" style="margin-top:1rem;">
-    <p><strong>⚠ Important:</strong> In pseudocode, use <strong>REAL</strong> for decimal numbers, <strong>INTEGER</strong> for whole numbers, and <strong>STRING</strong> for text. Variable names must be legal — no spaces, no special characters.</p>
-  </div>
-
-  <!-- Worked Example: Pseudocode only -->
-  <div class="card" style="margin-top:1.5rem;">
-    <h3>📝 Example: Average of two test marks</h3>
-    <p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem;">Ask the user to input a student's ID number and two test marks. Calculate and display the average mark.</p>
-    <div class="pseudo">
-<span class="kw">BEGIN</span>
-  <span class="kw">DECLARE</span> <span class="var">IDNUMBER</span> <span class="kw">AS</span> <span class="typ">STRING</span>
-  <span class="kw">DECLARE</span> <span class="var">TESTMARK1</span><span class="op">,</span> <span class="var">TESTMARK2</span> <span class="kw">AS</span> <span class="typ">REAL</span>
-  <span class="kw">DECLARE</span> <span class="var">AVERAGE</span> <span class="kw">AS</span> <span class="typ">REAL</span>
-  <span class="kw">ACCEPT</span> <span class="var">IDNUMBER</span>
-  <span class="kw">ACCEPT</span> <span class="var">TESTMARK1</span>
-  <span class="kw">ACCEPT</span> <span class="var">TESTMARK2</span>
-  <span class="var">AVERAGE</span> <span class="op">=</span> <span class="op">(</span><span class="var">TESTMARK1</span> <span class="op">+</span> <span class="var">TESTMARK2</span><span class="op">)</span> <span class="op">/</span> <span class="op">2</span>
-  <span class="kw">DISPLAY</span> <span class="str">"AVERAGE IS "</span> <span class="var">AVERAGE</span>
-<span class="kw">END</span>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════════════════════════ IPO CHARTS ════════════════════════════════ -->
-<div id="tab-ipo" class="section">
-  <div class="section-heading">
-    <div class="eyebrow">// 01 — analysis tool</div>
-    <h2>IPO Charts</h2>
-    <p>An <strong>Input → Processing → Output</strong> chart is used during the Analysis phase to understand and break down a problem before writing any code.</p>
-  </div>
-
-  <div class="card">
-    <h3>What is an IPO Chart?</h3>
-    <p>An IPO chart is a 3-column table that helps you <strong>analyse</strong> a problem by identifying what goes in (input), what must happen (processing), and what comes out (output).</p>
-    <div class="callout" style="margin-top:1rem;">
-      <p>There are many formats for IPO charts. At WSU, we follow the rules specified in the Module 4 notes exactly.</p>
-    </div>
-  </div>
-
-  <!-- Visual IPO explanation -->
-  <div class="flowchart-wrap">
-    <svg viewBox="0 0 700 130" xmlns="http://www.w3.org/2000/svg">
-      <!-- Input box -->
-      <rect x="20" y="25" width="180" height="80" rx="8" fill="#1a4a5a" stroke="#38bdf8" stroke-width="1.5"/>
-      <text x="110" y="55" text-anchor="middle" fill="#7dd3fc" font-family="JetBrains Mono" font-size="12" font-weight="bold">INPUT</text>
-      <text x="110" y="75" text-anchor="middle" fill="#bae6fd" font-family="JetBrains Mono" font-size="10">variable names</text>
-      <text x="110" y="90" text-anchor="middle" fill="#bae6fd" font-family="JetBrains Mono" font-size="10">for all inputs</text>
-      <!-- Arrow 1 -->
-      <line x1="200" y1="65" x2="240" y2="65" stroke="#64748b" stroke-width="2"/>
-      <polygon points="240,60 252,65 240,70" fill="#64748b"/>
-      <!-- Process box -->
-      <rect x="252" y="25" width="196" height="80" rx="8" fill="#1a1a5a" stroke="#818cf8" stroke-width="1.5"/>
-      <text x="350" y="55" text-anchor="middle" fill="#a5b4fc" font-family="JetBrains Mono" font-size="12" font-weight="bold">PROCESSING</text>
-      <text x="350" y="75" text-anchor="middle" fill="#c7d2fe" font-family="JetBrains Mono" font-size="10">all actions needed</text>
-      <text x="350" y="90" text-anchor="middle" fill="#c7d2fe" font-family="JetBrains Mono" font-size="10">(in English — WHAT to do)</text>
-      <!-- Arrow 2 -->
-      <line x1="448" y1="65" x2="488" y2="65" stroke="#64748b" stroke-width="2"/>
-      <polygon points="488,60 500,65 488,70" fill="#64748b"/>
-      <!-- Output box -->
-      <rect x="500" y="25" width="180" height="80" rx="8" fill="#0a3a2a" stroke="#34d399" stroke-width="1.5"/>
-      <text x="590" y="55" text-anchor="middle" fill="#6ee7b7" font-family="JetBrains Mono" font-size="12" font-weight="bold">OUTPUT</text>
-      <text x="590" y="75" text-anchor="middle" fill="#a7f3d0" font-family="JetBrains Mono" font-size="10">variable names</text>
-      <text x="590" y="90" text-anchor="middle" fill="#a7f3d0" font-family="JetBrains Mono" font-size="10">for all outputs</text>
-    </svg>
-  </div>
-
-  <!-- Column rules -->
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1.5rem;">
-    <div class="card" style="border-color:#1a4a5a;margin:0;">
-      <h3 style="color:#7dd3fc;">📥 INPUT Column</h3>
-      <ul style="margin-top:.5rem;">
-        <li>List of inputs (nouns)</li>
-        <li>Look for: <em>accept / ask the user / get</em></li>
-        <li>Use legal variable names</li>
-        <li>No spaces, no specials</li>
-      </ul>
-    </div>
-    <div class="card" style="border-color:#1a1a5a;margin:0;">
-      <h3 style="color:#a5b4fc;">⚙️ PROCESSING Column</h3>
-      <ul style="margin-top:.5rem;">
-        <li>List of actions (verbs)</li>
-        <li>Simple English only — NOT pseudocode</li>
-        <li>Show WHAT to do, not HOW</li>
-        <li>No detailed calculations</li>
-      </ul>
-    </div>
-    <div class="card" style="border-color:#0a3a2a;margin:0;">
-      <h3 style="color:#6ee7b7;">📤 OUTPUT Column</h3>
-      <ul style="margin-top:.5rem;">
-        <li>List of outputs (nouns)</li>
-        <li>Look for: <em>display / show / print</em></li>
-        <li>Use legal variable names</li>
-        <li>For messages, just write "message"</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Steps to fill an IPO chart -->
-  <div class="card">
-    <h3>How to fill in an IPO Chart — Step by Step</h3>
-    <div class="steps" style="margin-top:1rem;">
-      <div class="step">
-        <div class="step-num"></div>
-        <div class="step-body">
-          <strong>Read the problem carefully</strong>
-          <p>Identify every input and output. How many variables do you need?</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num"></div>
-        <div class="step-body">
-          <strong>Make up variable names for each input and output</strong>
-          <p>Write them in the INPUT and OUTPUT columns.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num"></div>
-        <div class="step-body">
-          <strong>List all actions needed in simple English</strong>
-          <p>In the correct order, in the PROCESSING column. Do NOT write pseudocode here.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Example 1 -->
-  <div class="card" style="margin-top:1.5rem;">
-    <h3>Example 1: Add three numbers</h3>
-    <p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem;"><em>"Accept three numbers, add them together and display the total."</em></p>
-    <table class="ipo-table">
-      <thead>
-        <tr>
-          <th class="th-input">INPUT</th>
-          <th class="th-proc">PROCESSING</th>
-          <th class="th-out">OUTPUT</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="td-input">NUMBER1<br>NUMBER2<br>NUMBER3</td>
-          <td class="td-proc">Accept 3 numbers<br>Add the 3 numbers together<br>Display the total</td>
-          <td class="td-out">TOTAL</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- Example 2 -->
-  <div class="card">
-    <h3>Example 2: Student average mark</h3>
-    <p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem;"><em>"Ask the user to input a student's ID number and two test marks. Calculate and display the average mark."</em></p>
-    <table class="ipo-table">
-      <thead>
-        <tr>
-          <th class="th-input">INPUT</th>
-          <th class="th-proc">PROCESSING</th>
-          <th class="th-out">OUTPUT</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="td-input">IDNUMBER<br>TESTMARK1<br>TESTMARK2</td>
-          <td class="td-proc">Get ID number, 2 test marks<br>Calculate the average of the marks<br>Display the average</td>
-          <td class="td-out">AVERAGE<br>message</td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="callout green" style="margin-top:1rem;">
-      <p><strong>Note on "message":</strong> If there is an output message (like "AVERAGE IS 75"), you just write <strong>message</strong> in the OUTPUT column — you do NOT write the full message text.</p>
-    </div>
-    <div class="callout" style="margin-top:.5rem;">
-      <p><strong>Note on PROCESSING:</strong> You can say "Get", "Accept", or "Ask user for" — all are acceptable at WSU.</p>
-    </div>
-  </div>
-
-  <!-- IPO → Pseudocode bridge -->
-  <div class="card" style="margin-top:1.5rem;">
-    <h3>🔗 From IPO Chart → Pseudocode</h3>
-    <p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem;">Each part of the IPO chart maps directly to pseudocode instructions.</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
-      <div>
-        <div style="font-size:.75rem;color:var(--muted);margin-bottom:.5rem;font-family:'JetBrains Mono',monospace;">IPO CHART (Example 2)</div>
-        <table class="ipo-table" style="font-size:.78rem;">
-          <thead><tr><th class="th-input">INPUT</th><th class="th-proc">PROCESSING</th><th class="th-out">OUTPUT</th></tr></thead>
-          <tbody>
-            <tr>
-              <td class="td-input">IDNUMBER<br>TESTMARK1<br>TESTMARK2</td>
-              <td class="td-proc">Get ID, 2 marks<br>Calculate average<br>Display average</td>
-              <td class="td-out">AVERAGE<br>message</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div>
-        <div style="font-size:.75rem;color:var(--muted);margin-bottom:.5rem;font-family:'JetBrains Mono',monospace;">PSEUDOCODE</div>
-        <div class="pseudo" style="margin:0;font-size:.76rem;">
-<span class="kw">BEGIN</span>
-  <span class="kw">DECLARE</span> <span class="var">IDNUMBER</span> <span class="kw">AS</span> <span class="typ">STRING</span>
-  <span class="kw">DECLARE</span> <span class="var">TESTMARK1</span><span class="op">,</span> <span class="var">TESTMARK2</span> <span class="kw">AS</span> <span class="typ">REAL</span>
-  <span class="kw">DECLARE</span> <span class="var">AVERAGE</span> <span class="kw">AS</span> <span class="typ">REAL</span>
-  <span class="kw">ACCEPT</span> <span class="var">IDNUMBER</span>
-  <span class="kw">ACCEPT</span> <span class="var">TESTMARK1</span>
-  <span class="kw">ACCEPT</span> <span class="var">TESTMARK2</span>
-  <span class="var">AVERAGE</span> <span class="op">=</span> <span class="op">(</span><span class="var">TESTMARK1</span> <span class="op">+</span> <span class="var">TESTMARK2</span><span class="op">)</span> <span class="op">/</span> <span class="op">2</span>
-  <span class="kw">DISPLAY</span> <span class="str">"AVERAGE IS "</span> <span class="var">AVERAGE</span>
-<span class="kw">END</span>
-        </div>
-      </div>
-    </div>
-    <div class="callout warn" style="margin-top:1rem;">
-      <p><strong>Mapping:</strong> INPUT column → DECLARE + ACCEPT &nbsp;|&nbsp; OUTPUT column → DECLARE + DISPLAY &nbsp;|&nbsp; PROCESSING column → the body statements</p>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════════════════════════ FLOWCHARTS ════════════════════════════════ -->
-<div id="tab-flowcharts" class="section">
-  <div class="section-heading">
-    <div class="eyebrow">// 02 — design tool</div>
-    <h2>Flowcharts</h2>
-    <p>A flowchart is a graphical representation of program logic using geometric shapes and flowlines. At WSU, we combine pseudocode instructions inside the shapes.</p>
-  </div>
-
-  <!-- Symbols -->
-  <div class="card">
-    <h3>Flowchart Symbols</h3>
-    <p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem;">Each shape has a specific meaning. You must use the correct shape for each instruction.</p>
-    <div class="legend-grid">
-
-      <div class="legend-item">
-        <svg viewBox="0 0 80 50"><ellipse cx="40" cy="25" rx="35" ry="18" fill="#1a4a5a" stroke="#38bdf8" stroke-width="1.5"/><text x="40" y="30" text-anchor="middle" fill="#bae6fd" font-family="JetBrains Mono" font-size="9">BEGIN/END</text></svg>
-        <div class="lname">Oval / Terminal</div>
-        <div class="luse">BEGIN and END only</div>
-      </div>
-
-      <div class="legend-item">
-        <svg viewBox="0 0 80 50"><rect x="5" y="10" width="70" height="30" fill="#1a2a4a" stroke="#818cf8" stroke-width="1.5"/><text x="40" y="30" text-anchor="middle" fill="#c7d2fe" font-family="JetBrains Mono" font-size="9">PROCESS</text></svg>
-        <div class="lname">Rectangle</div>
-        <div class="luse">Processing / calculations / DECLARE / assignments</div>
-      </div>
-
-      <div class="legend-item">
-        <svg viewBox="0 0 80 50"><polygon points="15,25 30,10 65,10 50,40 15,40" fill="#1a3a4a" stroke="#38bdf8" stroke-width="1.5"/><text x="40" y="30" text-anchor="middle" fill="#bae6fd" font-family="JetBrains Mono" font-size="9">I/O</text></svg>
-        <div class="lname">Parallelogram</div>
-        <div class="luse">ACCEPT (input) and DISPLAY (output)</div>
-      </div>
-
-      <div class="legend-item">
-        <svg viewBox="0 0 80 50"><polygon points="40,5 75,25 40,45 5,25" fill="#2a1a1a" stroke="#f59e0b" stroke-width="1.5"/><text x="40" y="29" text-anchor="middle" fill="#fcd34d" font-family="JetBrains Mono" font-size="8">DECISION</text></svg>
-        <div class="lname">Diamond</div>
-        <div class="luse">IF condition — two exits: T and F</div>
-      </div>
-
-      <div class="legend-item">
-        <svg viewBox="0 0 80 50"><circle cx="40" cy="25" r="16" fill="#1a1a3a" stroke="#a5b4fc" stroke-width="1.5"/><text x="40" y="29" text-anchor="middle" fill="#c7d2fe" font-family="JetBrains Mono" font-size="9">1</text></svg>
-        <div class="lname">Small Circle</div>
-        <div class="luse">Connector — continues flowchart on next page</div>
-      </div>
-
-      <div class="legend-item">
-        <svg viewBox="0 0 80 50"><line x1="40" y1="5" x2="40" y2="45" stroke="#64748b" stroke-width="2"/><polygon points="35,38 40,48 45,38" fill="#64748b"/></svg>
-        <div class="lname">Arrow / Flowline</div>
-        <div class="luse">Connects all symbols — shows direction</div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Rules -->
-  <div class="card" style="margin-top:1.5rem;">
-    <h3>📋 Flowchart Rules (WSU)</h3>
-    <div class="steps" style="margin-top:1rem;">
-      <div class="step">
-        <div class="step-num"></div>
-        <div class="step-body"><strong>Every symbol must contain a correct pseudocode instruction</strong><p>Write real pseudocode (BEGIN, DECLARE, ACCEPT, DISPLAY, IF…THEN, etc.) inside each shape.</p></div>
-      </div>
-      <div class="step">
-        <div class="step-num"></div>
-        <div class="step-body"><strong>Use the correct shape for each instruction</strong><p>Parallelograms = I/O only. Rectangles = processing only. Diamonds = decisions only.</p></div>
-      </div>
-      <div class="step">
-        <div class="step-num"></div>
-        <div class="step-body"><strong>Declare all variables in the first processing box</strong><p>Place all DECLARE instructions in the first rectangle after BEGIN.</p></div>
-      </div>
-      <div class="step">
-        <div class="step-num"></div>
-        <div class="step-body"><strong>All symbols must be joined with connecting lines (arrows)</strong><p>Every shape connects to the next — no floating symbols.</p></div>
-      </div>
-      <div class="step">
-        <div class="step-num"></div>
-        <div class="step-body"><strong>Decision symbol: label both exits T (True) and F (False)</strong><p>The two lines out of a diamond must always be labelled T and F.</p></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Simple flowchart diagram — Sequence -->
-  <div class="card" style="margin-top:1.5rem;">
-    <h3>Visual — Sequence Flowchart Structure</h3>
-    <div class="flowchart-wrap">
-      <svg viewBox="0 0 200 520" xmlns="http://www.w3.org/2000/svg" style="max-height:520px;">
-        <!-- BEGIN oval -->
-        <ellipse cx="100" cy="35" rx="60" ry="22" fill="#1a4a5a" stroke="#38bdf8" stroke-width="1.5"/>
-        <text x="100" y="40" text-anchor="middle" fill="#bae6fd" font-family="JetBrains Mono" font-size="11" font-weight="bold">BEGIN</text>
-        <!-- arrow -->
-        <line x1="100" y1="57" x2="100" y2="85" stroke="#475569" stroke-width="1.5"/>
-        <polygon points="95,80 100,92 105,80" fill="#475569"/>
-        <!-- DECLARE rect -->
-        <rect x="30" y="92" width="140" height="44" rx="5" fill="#1a2a4a" stroke="#818cf8" stroke-width="1.5"/>
-        <text x="100" y="110" text-anchor="middle" fill="#c7d2fe" font-family="JetBrains Mono" font-size="9">DECLARE variables</text>
-        <text x="100" y="126" text-anchor="middle" fill="#c7d2fe" font-family="JetBrains Mono" font-size="9">AS REAL / STRING</text>
-        <!-- arrow -->
-        <line x1="100" y1="136" x2="100" y2="164" stroke="#475569" stroke-width="1.5"/>
-        <polygon points="95,159 100,171 105,159" fill="#475569"/>
-        <!-- DISPLAY parallelogram -->
-        <polygon points="20,171 40,207 180,207 160,171" fill="#1a3a4a" stroke="#38bdf8" stroke-width="1.5"/>
-        <text x="100" y="194" text-anchor="middle" fill="#bae6fd" font-family="JetBrains Mono" font-size="9">DISPLAY "prompt"</text>
-        <!-- arrow -->
-        <line x1="100" y1="207" x2="100" y2="235" stroke="#475569" stroke-width="1.5"/>
-        <polygon points="95,230 100,242 105,230" fill="#475569"/>
-        <!-- ACCEPT parallelogram -->
-        <polygon points="20,242 40,278 180,278 160,242" fill="#1a3a4a" stroke="#38bdf8" stroke-width="1.5"/>
-        <text x="100" y="265" text-anchor="middle" fill="#bae6fd" font-family="JetBrains Mono" font-size="9">ACCEPT variable</text>
-        <!-- arrow -->
-        <line x1="100" y1="278" x2="100" y2="306" stroke="#475569" stroke-width="1.5"/>
-        <polygon points="95,301 100,313 105,301" fill="#475569"/>
-        <!-- CALC rect -->
-        <rect x="30" y="313" width="140" height="34" rx="5" fill="#1a2a4a" stroke="#818cf8" stroke-width="1.5"/>
-        <text x="100" y="335" text-anchor="middle" fill="#c7d2fe" font-family="JetBrains Mono" font-size="9">result = a + b</text>
-        <!-- arrow -->
-        <line x1="100" y1="347" x2="100" y2="375" stroke="#475569" stroke-width="1.5"/>
-        <polygon points="95,370 100,382 105,370" fill="#475569"/>
-        <!-- DISPLAY result parallelogram -->
-        <polygon points="20,382 40,418 180,418 160,382" fill="#1a3a4a" stroke="#38bdf8" stroke-width="1.5"/>
-        <text x="100" y="405" text-anchor="middle" fill="#bae6fd" font-family="JetBrains Mono" font-size="9">DISPLAY result</text>
-        <!-- arrow -->
-        <line x1="100" y1="418" x2="100" y2="446" stroke="#475569" stroke-width="1.5"/>
-        <polygon points="95,441 100,453 105,441" fill="#475569"/>
-        <!-- END oval -->
-        <ellipse cx="100" cy="470" rx="60" ry="22" fill="#1a4a5a" stroke="#38bdf8" stroke-width="1.5"/>
-        <text x="100" y="475" text-anchor="middle" fill="#bae6fd" font-family="JetBrains Mono" font-size="11" font-weight="bold">END</text>
-      </svg>
-    </div>
-  </div>
-
-  <!-- Decision Flowchart diagram -->
-  <div class="card" style="margin-top:1.5rem;">
-    <h3>Visual — Selection (IF) Flowchart Structure</h3>
-    <div class="flowchart-wrap">
-      <svg viewBox="0 0 340 420" xmlns="http://www.w3.org/2000/svg" style="max-height:420px;">
-        <!-- previous steps ... -->
-        <ellipse cx="170" cy="28" rx="60" ry="20" fill="#1a4a5a" stroke="#38bdf8" stroke-width="1.5"/>
-        <text x="170" y="33" text-anchor="middle" fill="#bae6fd" font-family="JetBrains Mono" font-size="10" font-weight="bold">... (previous steps)</text>
-        <!-- arrow down to diamond -->
-        <line x1="170" y1="48" x2="170" y2="76" stroke="#475569" stroke-width="1.5"/>
-        <polygon points="165,71 170,83 175,71" fill="#475569"/>
-        <!-- Decision diamond -->
-        <polygon points="170,83 310,165 170,247 30,165" fill="#2a1a1a" stroke="#f59e0b" stroke-width="1.5"/>
-        <text x="170" y="160" text-anchor="middle" fill="#fcd34d" font-family="JetBrains Mono" font-size="9">IF condition</text>
-        <text x="170" y="175" text-anchor="middle" fill="#fcd34d" font-family="JetBrains Mono" font-size="9">THEN</text>
-        <!-- T label + arrow right -->
-        <line x1="310" y1="165" x2="340" y2="165" stroke="#10b981" stroke-width="1.5"/>
-        <text x="316" y="158" fill="#10b981" font-family="JetBrains Mono" font-size="10" font-weight="bold">T</text>
-        <!-- True action box -->
-        <!-- extend T arrow down -->
-        <line x1="340" y1="165" x2="340" y2="220" stroke="#10b981" stroke-width="1.5"/>
-        <polygon points="335,215 340,227 345,215" fill="#10b981"/>
-        <rect x="290" y="227" width="100" height="36" rx="5" fill="#0a2a1a" stroke="#10b981" stroke-width="1.5"/>
-        <text x="340" y="250" text-anchor="middle" fill="#6ee7b7" font-family="JetBrains Mono" font-size="9">DISPLAY msg</text>
-        <!-- T rejoins -->
-        <line x1="340" y1="263" x2="340" y2="320" stroke="#475569" stroke-width="1.5"/>
-        <!-- F label + arrow down -->
-        <line x1="170" y1="247" x2="170" y2="320" stroke="#ef4444" stroke-width="1.5"/>
-        <text x="178" y="265" fill="#ef4444" font-family="JetBrains Mono" font-size="10" font-weight="bold">F</text>
-        <!-- merge line -->
-        <line x1="170" y1="320" x2="340" y2="320" stroke="#475569" stroke-width="1.5"/>
-        <line x1="255" y1="320" x2="255" y2="348" stroke="#475569" stroke-width="1.5"/>
-        <polygon points="250,343 255,355 260,343" fill="#475569"/>
-        <!-- END oval -->
-        <ellipse cx="255" cy="372" rx="60" ry="20" fill="#1a4a5a" stroke="#38bdf8" stroke-width="1.5"/>
-        <text x="255" y="377" text-anchor="middle" fill="#bae6fd" font-family="JetBrains Mono" font-size="10" font-weight="bold">END</text>
-      </svg>
-    </div>
-    <div class="callout warn" style="margin-top:.75rem;">
-      <p><strong>Remember:</strong> The two lines out of the diamond are always labelled <strong>T</strong> (True) and <strong>F</strong> (False). Never leave them unlabelled.</p>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════════════════════════ FULL EXAMPLES ════════════════════════════════ -->
-<div id="tab-examples" class="section">
-  <div class="section-heading">
-    <div class="eyebrow">// 03 — worked examples</div>
-    <h2>Full Worked Examples</h2>
-    <p>IPO chart → Pseudocode → Flowchart for each problem from the notes.</p>
-  </div>
-
-  <!-- Example 1 -->
-  <div class="card">
-    <h3>Example 1 — Two prices, display total</h3>
-    <p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem;"><em>"Write a program to ask the user to input 2 prices. Calculate and display the total price."</em></p>
-    <table class="ipo-table" style="margin-bottom:1rem;">
-      <thead><tr><th class="th-input">INPUT</th><th class="th-proc">PROCESSING</th><th class="th-out">OUTPUT</th></tr></thead>
-      <tbody>
-        <tr>
-          <td class="td-input">PRICE1<br>PRICE2</td>
-          <td class="td-proc">Get 2 prices<br>Calculate and display the total</td>
-          <td class="td-out">TOTAL</td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="pseudo">
-<span class="kw">BEGIN</span>
-  <span class="kw">DECLARE</span> <span class="var">PRICE1</span><span class="op">,</span> <span class="var">PRICE2</span> <span class="kw">AS</span> <span class="typ">REAL</span>
-  <span class="kw">DECLARE</span> <span class="var">TOTAL</span> <span class="kw">AS</span> <span class="typ">REAL</span>
-  <span class="kw">DISPLAY</span> <span class="str">"Please input two prices"</span>
-  <span class="kw">ACCEPT</span> <span class="var">PRICE1</span>
-  <span class="kw">ACCEPT</span> <span class="var">PRICE2</span>
-  <span class="var">TOTAL</span> <span class="op">=</span> <span class="var">PRICE1</span> <span class="op">+</span> <span class="var">PRICE2</span>
-  <span class="kw">DISPLAY</span> <span class="str">"TOTAL IS "</span> <span class="var">TOTAL</span>
-<span class="kw">END</span>
-    </div>
-    <div class="flowchart-wrap" style="margin-top:1rem;">
-      <svg viewBox="0 0 220 570" xmlns="http://www.w3.org/2000/svg" style="max-height:570px;">
-        <ellipse cx="110" cy="30" rx="65" ry="22" fill="#1a4a5a" stroke="#38bdf8" stroke-width="1.5"/>
-        <text x="110" y="35" text-anchor="middle" fill="#bae6fd" font-family="JetBrains Mono" font-size="11" font-weight="bold">BEGIN</text>
-        <line x1="110" y1="52" x2="110" y2="75" stroke="#475569" stroke-width="1.5"/><polygon points="105,70 110,82 115,70" fill="#475569"/>
-        <rect x="20" y="82" width="180" height="44" rx="5" fill="#1a2a4a" stroke="#818cf8" stroke-width="1.5"/>
-        <text x="110" y="101" text-anchor="middle" fill="#c7d2fe" font-family="JetBrains Mono" font-size="9">DECLARE PRICE1, PRICE2</text>
-        <text x="110" y="117" text-anchor="middle" fill="#c7d2fe" font-family="JetBrains Mono" font-size="9">DECLARE TOTAL AS REAL</text>
-        <line x1="110" y1="126" x2="110" y2="149" stroke="#475569" stroke-width="1.5"/><polygon points="105,144 110,156 115,144" fill="#475569"/>
-        <polygon points="10,156 32,186 188,186 166,156" fill="#1a3a4a" stroke="#38bdf8" stroke-width="1.5"/>
-        <text x="110" y="175" text-anchor="middle" fill="#bae6fd" font-family="JetBrains Mono" font-size="9">DISPLAY "input two prices"</text>
-        <line x1="110" y1="186" x2="110" y2="209" stroke="#475569" stroke-width="1.5"/><polygon points="105,204 110,216 115,204" fill="#475569"/>
-        <polygon points="10,216 32,246 188,246 166,216" fill="#1a3a4a" stroke="#38bdf8" stroke-width="1.5"/>
-        <text x="110" y="235" text-anchor="middle" fill="#bae6fd" font-family="JetBrains Mono" font-size="9">ACCEPT PRICE1</text>
-        <line x1="110" y1="246" x2="110" y2="269" stroke="#475569" stroke-width="1.5"/><polygon points="105,264 110,276 115,264" fill="#475569"/>
-        <polygon points="10,276 32,306 188,306 166,276" fill="#1a3a4a" stroke="#38bdf8" stroke-width="1.5"/>
-        <text x="110" y="295" text-anchor="middle" fill="#bae6fd" font-family="JetBrains Mono" font-size="9">ACCEPT PRICE2</text>
-        <line x1="110" y1="306" x2="110" y2="329" stroke="#475569" stroke-width="1.5"/><polygon points="105,324 110,336 115,324" fill="#475569"/>
-        <rect x="20" y="336" width="180" height="34" rx="5" fill="#1a2a4a" stroke="#818cf8" stroke-width="1.5"/>
-        <text x="110" y="358" text-anchor="middle" fill="#c7d2fe" font-family="JetBrains Mono" font-size="9">TOTAL = PRICE1 + PRICE2</text>
-        <line x1="110" y1="370" x2="110" y2="393" stroke="#475569" stroke-width="1.5"/><polygon points="105,388 110,400 115,388" fill="#475569"/>
-        <polygon points="10,400 32,430 188,430 166,400" fill="#1a3a4a" stroke="#38bdf8" stroke-width="1.5"/>
-        <text x="110" y="419" text-anchor="middle" fill="#bae6fd" font-family="JetBrains Mono" font-size="9">DISPLAY "TOTAL IS " TOTAL</text>
-        <line x1="110" y1="430" x2="110" y2="453" stroke="#475569" stroke-width="1.5"/><polygon points="105,448 110,460 115,448" fill="#475569"/>
-        <ellipse cx="110" cy="477" rx="65" ry="22" fill="#1a4a5a" stroke="#38bdf8" stroke-width="1.5"/>
-        <text x="110" y="482" text-anchor="middle" fill="#bae6fd" font-family="JetBrains Mono" font-size="11" font-weight="bold">END</text>
-      </svg>
-    </div>
-  </div>
-
-  <!-- Example 2 -->
-  <div class="card" style="margin-top:1.5rem;">
-    <h3>Example 2 — Age check (IF selection)</h3>
-    <p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem;"><em>"Ask the user to input the student's age. If the age is greater than or equal to 18, display 'YOU CAN VOTE'."</em></p>
-    <table class="ipo-table" style="margin-bottom:1rem;">
-      <thead><tr><th class="th-input">INPUT</th><th class="th-proc">PROCESSING</th><th class="th-out">OUTPUT</th></tr></thead>
-      <tbody>
-        <tr>
-          <td class="td-input">AGE</td>
-          <td class="td-proc">Get student's age<br>If student &gt;= 18 display message</td>
-          <td class="td-out">message</td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="pseudo">
-<span class="kw">BEGIN</span>
-  <span class="kw">DECLARE</span> <span class="var">AGE</span> <span class="kw">AS</span> <span class="typ">REAL</span>
-  <span class="kw">DISPLAY</span> <span class="str">"PLEASE INPUT AGE"</span>
-  <span class="kw">ACCEPT</span> <span class="var">AGE</span>
-  <span class="kw">IF</span> <span class="var">AGE</span> <span class="op">&gt;=</span> <span class="op">18</span> <span class="kw">THEN</span>
-    <span class="kw">DISPLAY</span> <span class="str">"YOU CAN VOTE"</span>
-  <span class="kw">ENDIF</span>
-<span class="kw">END</span>
-    </div>
-    <div class="flowchart-wrap" style="margin-top:1rem;">
-      <svg viewBox="0 0 360 480" xmlns="http://www.w3.org/2000/svg" style="max-height:480px;">
-        <ellipse cx="160" cy="28" rx="65" ry="22" fill="#1a4a5a" stroke="#38bdf8" stroke-width="1.5"/>
-        <text x="160" y="33" text-anchor="middle" fill="#bae6fd" font-family="JetBrains Mono" font-size="11" font-weight="bold">BEGIN</text>
-        <line x1="160" y1="50" x2="160" y2="73" stroke="#475569" stroke-width="1.5"/><polygon points="155,68 160,80 165,68" fill="#475569"/>
-        <rect x="70" y="80" width="180" height="34" rx="5" fill="#1a2a4a" stroke="#818cf8" stroke-width="1.5"/>
-        <text x="160" y="102" text-anchor="middle" fill="#c7d2fe" font-family="JetBrains Mono" font-size="9">DECLARE AGE AS REAL</text>
-        <line x1="160" y1="114" x2="160" y2="137" stroke="#475569" stroke-width="1.5"/><polygon points="155,132 160,144 165,132" fill="#475569"/>
-        <polygon points="60,144 82,174 238,174 216,144" fill="#1a3a4a" stroke="#38bdf8" stroke-width="1.5"/>
-        <text x="160" y="163" text-anchor="middle" fill="#bae6fd" font-family="JetBrains Mono" font-size="9">DISPLAY "PLEASE INPUT AGE"</text>
-        <line x1="160" y1="174" x2="160" y2="197" stroke="#475569" stroke-width="1.5"/><polygon points="155,192 160,204 165,192" fill="#475569"/>
-        <polygon points="60,204 82,234 238,234 216,204" fill="#1a3a4a" stroke="#38bdf8" stroke-width="1.5"/>
-        <text x="160" y="223" text-anchor="middle" fill="#bae6fd" font-family="JetBrains Mono" font-size="9">ACCEPT AGE</text>
-        <line x1="160" y1="234" x2="160" y2="257" stroke="#475569" stroke-width="1.5"/><polygon points="155,252 160,264 165,252" fill="#475569"/>
-        <!-- Diamond -->
-        <polygon points="160,264 295,320 160,376 25,320" fill="#2a1a1a" stroke="#f59e0b" stroke-width="1.5"/>
-        <text x="160" y="315" text-anchor="middle" fill="#fcd34d" font-family="JetBrains Mono" font-size="9">IF AGE &gt;= 18</text>
-        <text x="160" y="330" text-anchor="middle" fill="#fcd34d" font-family="JetBrains Mono" font-size="9">THEN</text>
-        <!-- T arrow right -->
-        <line x1="295" y1="320" x2="345" y2="320" stroke="#10b981" stroke-width="1.5"/>
-        <text x="302" y="313" fill="#10b981" font-family="JetBrains Mono" font-size="10" font-weight="bold">T</text>
-        <line x1="345" y1="320" x2="345" y2="355" stroke="#10b981" stroke-width="1.5"/>
-        <polygon points="340,350 345,362 350,350" fill="#10b981"/>
-        <polygon points="295,362 315,392 355,392 335,362" fill="#0a2a1a" stroke="#10b981" stroke-width="1.5"/>
-        <text x="325" y="381" text-anchor="middle" fill="#6ee7b7" font-family="JetBrains Mono" font-size="8">DISPLAY "YOU CAN VOTE"</text>
-        <!-- T rejoins -->
-        <line x1="345" y1="392" x2="345" y2="430" stroke="#475569" stroke-width="1.5"/>
-        <!-- F arrow down -->
-        <line x1="160" y1="376" x2="160" y2="430" stroke="#ef4444" stroke-width="1.5"/>
-        <text x="168" y="408" fill="#ef4444" font-family="JetBrains Mono" font-size="10" font-weight="bold">F</text>
-        <!-- merge -->
-        <line x1="160" y1="430" x2="345" y2="430" stroke="#475569" stroke-width="1.5"/>
-        <line x1="252" y1="430" x2="252" y2="453" stroke="#475569" stroke-width="1.5"/>
-        <polygon points="247,448 252,460 257,448" fill="#475569"/>
-        <ellipse cx="252" cy="467" rx="65" ry="15" fill="#1a4a5a" stroke="#38bdf8" stroke-width="1.5"/>
-        <text x="252" y="472" text-anchor="middle" fill="#bae6fd" font-family="JetBrains Mono" font-size="11" font-weight="bold">END</text>
-      </svg>
-    </div>
-  </div>
-
-  <!-- Example 3 -->
-  <div class="card" style="margin-top:1.5rem;">
-    <h3>Example 3 — Discount calculation (IF / ELSE)</h3>
-    <p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem;"><em>"Ask the user to input 2 prices. If the total is greater than R100, subtract 10% discount from the total. Display the final total after the discount."</em></p>
-    <table class="ipo-table" style="margin-bottom:1rem;">
-      <thead><tr><th class="th-input">INPUT</th><th class="th-proc">PROCESSING</th><th class="th-out">OUTPUT</th></tr></thead>
-      <tbody>
-        <tr>
-          <td class="td-input">PRICE1<br>PRICE2</td>
-          <td class="td-proc">Get 2 prices<br>Calculate the total<br>If total &gt; R100, subtract 10%<br>Display total after discount</td>
-          <td class="td-out">TOTAL1</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-      <div>
-        <div class="tag tag-blue" style="margin-bottom:.5rem;">Solution 1 (no ELSE)</div>
-        <div class="pseudo" style="font-size:.78rem;">
-<span class="kw">BEGIN</span>
-  <span class="kw">DECLARE</span> <span class="var">PRICE1</span><span class="op">,</span><span class="var">PRICE2</span><span class="op">,</span><span class="var">TOTAL1</span> <span class="kw">AS</span> <span class="typ">REAL</span>
-  <span class="kw">DISPLAY</span> <span class="str">"INPUT TWO PRICES"</span>
-  <span class="kw">ACCEPT</span> <span class="var">PRICE1</span>
-  <span class="kw">ACCEPT</span> <span class="var">PRICE2</span>
-  <span class="var">TOTAL1</span> <span class="op">=</span> <span class="var">PRICE1</span> <span class="op">+</span> <span class="var">PRICE2</span>
-  <span class="kw">IF</span> <span class="var">TOTAL1</span> <span class="op">&gt;</span> <span class="op">100</span> <span class="kw">THEN</span>
-    <span class="var">TOTAL1</span> <span class="op">=</span> <span class="var">TOTAL1</span> <span class="op">-</span> <span class="op">(0.1</span> <span class="op">*</span> <span class="var">TOTAL1</span><span class="op">)</span>
-  <span class="kw">ENDIF</span>
-  <span class="kw">DISPLAY</span> <span class="str">"TOTAL AFTER DISCOUNT"</span> <span class="var">TOTAL1</span>
-<span class="kw">END</span>
-        </div>
-      </div>
-      <div>
-        <div class="tag tag-purple" style="margin-bottom:.5rem;">Solution 2 (with ELSE)</div>
-        <div class="pseudo" style="font-size:.78rem;">
-<span class="kw">BEGIN</span>
-  <span class="kw">DECLARE</span> <span class="var">PRICE1</span><span class="op">,</span><span class="var">PRICE2</span><span class="op">,</span><span class="var">TOTAL1</span><span class="op">,</span><span class="var">DISCOUNT</span> <span class="kw">AS</span> <span class="typ">REAL</span>
-  <span class="kw">DISPLAY</span> <span class="str">"INPUT TWO PRICES"</span>
-  <span class="kw">ACCEPT</span> <span class="var">PRICE1</span>
-  <span class="kw">ACCEPT</span> <span class="var">PRICE2</span>
-  <span class="var">TOTAL1</span> <span class="op">=</span> <span class="var">PRICE1</span> <span class="op">+</span> <span class="var">PRICE2</span>
-  <span class="kw">IF</span> <span class="var">TOTAL1</span> <span class="op">&gt;</span> <span class="op">100</span> <span class="kw">THEN</span>
-    <span class="var">DISCOUNT</span> <span class="op">=</span> <span class="op">0.1</span> <span class="op">*</span> <span class="var">TOTAL1</span>
-  <span class="kw">ELSE</span>
-    <span class="var">DISCOUNT</span> <span class="op">=</span> <span class="op">0</span>
-  <span class="kw">ENDIF</span>
-  <span class="var">TOTAL1</span> <span class="op">=</span> <span class="var">TOTAL1</span> <span class="op">-</span> <span class="var">DISCOUNT</span>
-  <span class="kw">DISPLAY</span> <span class="str">"TOTAL AFTER DISCOUNT"</span> <span class="var">TOTAL1</span>
-<span class="kw">END</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Flowchart for Example 3 Solution 2 -->
-    <div class="flowchart-wrap" style="margin-top:1rem;">
-      <svg viewBox="0 0 440 640" xmlns="http://www.w3.org/2000/svg" style="max-height:640px;">
-        <!-- BEGIN -->
-        <ellipse cx="200" cy="28" rx="65" ry="22" fill="#1a4a5a" stroke="#38bdf8" stroke-width="1.5"/>
-        <text x="200" y="33" text-anchor="middle" fill="#bae6fd" font-family="JetBrains Mono" font-size="11" font-weight="bold">BEGIN</text>
-        <line x1="200" y1="50" x2="200" y2="73" stroke="#475569" stroke-width="1.5"/><polygon points="195,68 200,80 205,68" fill="#475569"/>
-        <!-- DECLARE -->
-        <rect x="80" y="80" width="240" height="44" rx="5" fill="#1a2a4a" stroke="#818cf8" stroke-width="1.5"/>
-        <text x="200" y="98" text-anchor="middle" fill="#c7d2fe" font-family="JetBrains Mono" font-size="8.5">DECLARE PRICE1, PRICE2,</text>
-        <text x="200" y="114" text-anchor="middle" fill="#c7d2fe" font-family="JetBrains Mono" font-size="8.5">TOTAL1, DISCOUNT AS REAL</text>
-        <line x1="200" y1="124" x2="200" y2="147" stroke="#475569" stroke-width="1.5"/><polygon points="195,142 200,154 205,142" fill="#475569"/>
-        <!-- DISPLAY -->
-        <polygon points="70,154 92,184 308,184 286,154" fill="#1a3a4a" stroke="#38bdf8" stroke-width="1.5"/>
-        <text x="200" y="173" text-anchor="middle" fill="#bae6fd" font-family="JetBrains Mono" font-size="8.5">DISPLAY "INPUT TWO PRICES"</text>
-        <line x1="200" y1="184" x2="200" y2="207" stroke="#475569" stroke-width="1.5"/><polygon points="195,202 200,214 205,202" fill="#475569"/>
-        <!-- ACCEPT PRICE1 -->
-        <polygon points="70,214 92,244 308,244 286,214" fill="#1a3a4a" stroke="#38bdf8" stroke-width="1.5"/>
-        <text x="200" y="233" text-anchor="middle" fill="#bae6fd" font-family="JetBrains Mono" font-size="9">ACCEPT PRICE1</text>
-        <line x1="200" y1="244" x2="200" y2="267" stroke="#475569" stroke-width="1.5"/><polygon points="195,262 200,274 205,262" fill="#475569"/>
-        <!-- ACCEPT PRICE2 -->
-        <polygon points="70,274 92,304 308,304 286,274" fill="#1a3a4a" stroke="#38bdf8" stroke-width="1.5"/>
-        <text x="200" y="293" text-anchor="middle" fill="#bae6fd" font-family="JetBrains Mono" font-size="9">ACCEPT PRICE2</text>
-        <line x1="200" y1="304" x2="200" y2="327" stroke="#475569" stroke-width="1.5"/><polygon points="195,322 200,334 205,322" fill="#475569"/>
-        <!-- TOTAL calc -->
-        <rect x="80" y="334" width="240" height="30" rx="5" fill="#1a2a4a" stroke="#818cf8" stroke-width="1.5"/>
-        <text x="200" y="354" text-anchor="middle" fill="#c7d2fe" font-family="JetBrains Mono" font-size="9">TOTAL1 = PRICE1 + PRICE2</text>
-        <line x1="200" y1="364" x2="200" y2="387" stroke="#475569" stroke-width="1.5"/><polygon points="195,382 200,394 205,382" fill="#475569"/>
-        <!-- Diamond IF -->
-        <polygon points="200,394 360,444 200,494 40,444" fill="#2a1a1a" stroke="#f59e0b" stroke-width="1.5"/>
-        <text x="200" y="438" text-anchor="middle" fill="#fcd34d" font-family="JetBrains Mono" font-size="9">IF TOTAL1</text>
-        <text x="200" y="454" text-anchor="middle" fill="#fcd34d" font-family="JetBrains Mono" font-size="9">&gt; 100 THEN</text>
-        <!-- T label right -->
-        <line x1="360" y1="444" x2="420" y2="444" stroke="#10b981" stroke-width="1.5"/>
-        <text x="367" y="437" fill="#10b981" font-family="JetBrains Mono" font-size="10" font-weight="bold">T</text>
-        <line x1="420" y1="444" x2="420" y2="480" stroke="#10b981" stroke-width="1.5"/>
-        <polygon points="415,475 420,487 425,475" fill="#10b981"/>
-        <rect x="370" y="487" width="110" height="30" rx="5" fill="#0a2a1a" stroke="#10b981" stroke-width="1.5"/>
-        <text x="425" y="507" text-anchor="middle" fill="#6ee7b7" font-family="JetBrains Mono" font-size="8">DISCOUNT = 0.1 * TOTAL1</text>
-        <!-- F label left -->
-        <line x1="40" y1="444" x2="0" y2="444" stroke="#ef4444" stroke-width="1.5"/>
-        <text x="10" y="437" fill="#ef4444" font-family="JetBrains Mono" font-size="10" font-weight="bold">F</text>
-        <line x1="0" y1="444" x2="0" y2="480" stroke="#ef4444" stroke-width="1.5"/>
-        <polygon points="-5,475 0,487 5,475" fill="#ef4444"/>
-        <rect x="-30" y="487" width="90" height="30" rx="5" fill="#2a0a0a" stroke="#ef4444" stroke-width="1.5"/>
-        <text x="15" y="507" text-anchor="middle" fill="#fca5a5" font-family="JetBrains Mono" font-size="9">DISCOUNT = 0</text>
-        <!-- merge both sides -->
-        <line x1="420" y1="517" x2="420" y2="545" stroke="#475569" stroke-width="1.5"/>
-        <line x1="15" y1="517" x2="15" y2="545" stroke="#475569" stroke-width="1.5"/>
-        <line x1="15" y1="545" x2="420" y2="545" stroke="#475569" stroke-width="1.5"/>
-        <line x1="200" y1="545" x2="200" y2="565" stroke="#475569" stroke-width="1.5"/>
-        <polygon points="195,560 200,572 205,560" fill="#475569"/>
-        <!-- TOTAL1 = ... -->
-        <rect x="70" y="572" width="260" height="30" rx="5" fill="#1a2a4a" stroke="#818cf8" stroke-width="1.5"/>
-        <text x="200" y="592" text-anchor="middle" fill="#c7d2fe" font-family="JetBrains Mono" font-size="9">TOTAL1 = TOTAL1 - DISCOUNT</text>
-        <!-- END (off-screen — connector would go here in a real multi-page flowchart) -->
-        <line x1="200" y1="602" x2="200" y2="617" stroke="#475569" stroke-width="1.5"/>
-        <text x="200" y="630" text-anchor="middle" fill="#64748b" font-family="JetBrains Mono" font-size="8">→ DISPLAY + END (continued)</text>
-      </svg>
-    </div>
-  </div>
-</div>
-
-</main>
-
-<footer>Modau.M IT &nbsp;·&nbsp; WSU Dev Software 1 — Module 4 Study App &nbsp;·&nbsp; 2025</footer>
 
 <script>
-  function switchTab(name) {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    document.querySelector(`#tab-${name}`).classList.add('active');
-    event.target.classList.add('active');
+/* ============================================================
+   QUESTION DATA
+   ============================================================ */
+
+const mcQuestions = [
+  {
+    id: 'mc1',
+    text: 'Given the IP address 172.16.5.70 with the subnet mask 255.255.255.224, what is the network address?',
+    options: { a: '172.16.5.0', b: '172.16.5.32', c: '172.16.5.64', d: '172.16.5.96' },
+    correct: 'c',
+    explanation: 'Mask /27 = block size 32. Multiples: 0, 32, 64, 96… 70 falls in 64–95 → network = 172.16.5.64.'
+  },
+  {
+    id: 'mc2',
+    text: 'What is the last valid host IP address in the subnet 10.0.0.64/27?',
+    options: { a: '10.0.0.94', b: '10.0.0.95', c: '10.0.0.96', d: '10.0.0.63' },
+    correct: 'a',
+    explanation: '/27 = block size 32. Subnet range 64–95. Broadcast = 95. Last usable host = 94.'
+  },
+  {
+    id: 'mc3',
+    text: 'What is the usable number of host addresses in a subnet with a /30 prefix?',
+    options: { a: '2', b: '4', c: '6', d: '14' },
+    correct: 'a',
+    explanation: '/30 leaves 2 host bits → 2² − 2 = 2 usable hosts.'
+  },
+  {
+    id: 'mc4',
+    text: 'What is the network prefix for the host address 2001:DB8:CAFE:2:AB::5/64?',
+    options: { a: '2001:DB8:CAFE', b: '2001:DB8:CAFE:2', c: '2001:DB8:CAFE:2:AB', d: '2001:DB8:CAFE:2:AB::' },
+    correct: 'b',
+    explanation: '/64 = first 4 hextets (64 bits). Prefix = 2001:DB8:CAFE:2.'
+  },
+  {
+    id: 'mc5',
+    text: 'A network 192.168.5.0/24 must be split so that one subnet supports 10 hosts and another supports 6 hosts. Which two subnets achieve that? (Choose two.)',
+    options: {
+      a: '192.168.5.0/28',
+      b: '192.168.5.16/29',
+      c: '192.168.5.32/28',
+      d: '192.168.5.48/28',
+      e: '192.168.5.64/27'
+    },
+    correct: ['a','b'],
+    multi: true,
+    explanation: '/28 gives 14 usable hosts (≥10) ✓. /29 gives 6 usable hosts (≥6) ✓. So a and b.'
+  },
+  {
+    id: 'mc6',
+    text: 'Which two fields are included in the TCP header but NOT in the UDP header? (Choose two.)',
+    options: { a: 'window', b: 'checksum', c: 'source port', d: 'sequence number', e: 'destination port' },
+    correct: ['a','d'],
+    multi: true,
+    explanation: 'TCP has window and sequence number. UDP has only 8-byte header (src port, dst port, length, checksum) — no window or sequence number.'
+  },
+  {
+    id: 'mc7',
+    text: 'What information does TCP use to reassemble and reorder received segments?',
+    options: { a: 'port numbers', b: 'sequence numbers', c: 'acknowledgment numbers', d: 'fragment numbers' },
+    correct: 'b',
+    explanation: 'TCP uses sequence numbers to reorder segments correctly.'
+  },
+  {
+    id: 'mc8',
+    text: 'A PC receives the IP address 169.254.10.5. Which two conclusions can be drawn? (Choose two.)',
+    options: {
+      a: 'The PC cannot contact a DHCP server.',
+      b: 'The DNS server is misconfigured.',
+      c: 'The PC is configured to obtain an IP automatically.',
+      d: 'The default gateway is not configured.',
+      e: 'The network is misconfigured for routing.'
+    },
+    correct: ['a','c'],
+    multi: true,
+    explanation: '169.254.x.x is APIPA — the PC tried DHCP, failed, and self-assigned. This proves automatic addressing is enabled and DHCP is unreachable.'
+  },
+  {
+    id: 'mc9',
+    text: 'What is the first valid host address in the subnet 192.168.1.64/26?',
+    options: { a: '192.168.1.63', b: '192.168.1.65', c: '192.168.1.64', d: '192.168.1.66' },
+    correct: 'b',
+    explanation: '/26 = block size 64. Network = .64. First host = .65.'
+  },
+  {
+    id: 'mc10',
+    text: 'Which protocol uses UDP for client-to-server communication and TCP for server-to-server communication?',
+    options: { a: 'HTTP', b: 'FTP', c: 'DNS', d: 'SMTP' },
+    correct: 'c',
+    explanation: 'DNS uses UDP for normal client queries (port 53) but TCP for zone transfers between servers.'
   }
-  function toggleTheme() {
-    const light = document.body.classList.toggle('light');
-    document.getElementById('themeBtn').textContent = light ? '🌙 Dark' : '☀️ Light';
+];
+
+const shortQuestions = [
+  {
+    id: 'sa1',
+    type: 'matching',
+    text: 'Match the IPv4 address type with its correct address. Enter the letter (A–E) in each box.',
+    addresses: [
+      { key: 'Private', correct: 'b' },
+      { key: 'Public', correct: 'd' },
+      { key: 'APIPA', correct: 'c' },
+      { key: 'Loopback', correct: 'a' },
+      { key: 'Multicast', correct: 'e' }
+    ],
+    legend: 'A. 127.0.0.1  •  B. 172.16.8.1  •  C. 169.254.1.1  •  D. 8.8.8.8  •  E. 224.0.0.9',
+    explanation: 'Private = 172.16.8.1 (B); Public = 8.8.8.8 (D); APIPA = 169.254.1.1 (C); Loopback = 127.0.0.1 (A); Multicast = 224.0.0.9 (E).'
+  },
+  {
+    id: 'sa2',
+    type: 'short',
+    text: 'Given the MAC address 00:1A:2B:3C:4D:5E, what is the OUI portion?',
+    correct: ['00:1A:2B','00-1a-2b','001a2b','00:1a:2b'],
+    explanation: 'OUI = first 3 bytes = 00:1A:2B.'
+  },
+  {
+    id: 'sa3',
+    type: 'short',
+    text: 'How many usable host addresses are available in a /29 subnet?',
+    correct: ['6'],
+    explanation: '/29 → 3 host bits → 2³ − 2 = 6 usable hosts.'
+  },
+  {
+    id: 'sa4',
+    type: 'short',
+    text: 'What is the prefix length (e.g. /26) for the subnet mask 255.255.255.192?',
+    correct: ['/26','26'],
+    explanation: '255.255.255.192 = 11111111.11111111.11111111.11000000 = /26.'
+  },
+  {
+    id: 'sa5',
+    type: 'short',
+    text: 'Which protocol maps a known IPv4 address to an unknown MAC address on a local network?',
+    correct: ['arp','address resolution protocol'],
+    explanation: 'ARP (Address Resolution Protocol) resolves IP → MAC.'
+  },
+  {
+    id: 'sa6',
+    type: 'short',
+    text: 'Which protocol dynamically assigns IP addresses to hosts?',
+    correct: ['dhcp','dynamic host configuration protocol'],
+    explanation: 'DHCP uses DORA (Discover, Offer, Request, Acknowledge).'
+  },
+  {
+    id: 'sa7',
+    type: 'short',
+    text: 'What is the IPv6 loopback address? (Use the compressed form.)',
+    correct: ['::1','0:0:0:0:0:0:0:1','::1/128'],
+    explanation: 'IPv6 loopback = ::1.'
+  },
+  {
+    id: 'sa8',
+    type: 'short',
+    text: 'An Ethernet frame smaller than 64 bytes is discarded by a switch. What is this frame called?',
+    correct: ['runt','runt frame'],
+    explanation: 'Runt frame — below the 64-byte minimum.'
+  },
+  {
+    id: 'sa9',
+    type: 'short',
+    text: 'What is the Protocol Data Unit (PDU) of the Transport layer?',
+    correct: ['segment','segments'],
+    explanation: 'Transport layer PDU = segment (TCP) / datagram (UDP), commonly called segment.'
+  },
+  {
+    id: 'sa10',
+    type: 'short',
+    text: 'What is the default port number used by HTTP?',
+    correct: ['80'],
+    explanation: 'HTTP default port = 80 (HTTPS = 443).'
   }
+];
+
+/* ============================================================
+   STRUCTURED QUESTIONS (Section C)
+   ============================================================ */
+
+const structuredQuestions = [
+  {
+    id: 'q3',
+    title: 'Question 3 — Network Devices & Models [20 Marks]',
+    parts: [
+      {
+        id: 'q3_1',
+        text: '3.1 Compare the roles of a switch and a router in a network. Include how each device handles data and contributes to network efficiency.',
+        marks: 8,
+        solution: `<h4>Model Answer</h4>
+        <table>
+          <tr><th>Aspect</th><th>Switch (Layer 2)</th><th>Router (Layer 3)</th></tr>
+          <tr><td>Forwarding decision</td><td>Uses destination <strong>MAC address</strong></td><td>Uses destination <strong>IP address</strong></td></tr>
+          <tr><td>Table</td><td>MAC address (CAM) table</td><td>Routing table</td></tr>
+          <tr><td>Broadcast domain</td><td>Does <em>not</em> break broadcast domains (unless VLANs)</td><td>Breaks broadcast domains — each interface is its own</td></tr>
+          <tr><td>Collision domain</td><td>Each port = separate collision domain</td><td>Each interface = separate collision domain</td></tr>
+          <tr><td>Connects</td><td>Devices within the <em>same</em> LAN</td><td><em>Different</em> networks (LAN↔WAN)</td></tr>
+          <tr><td>Efficiency</td><td>Hardware-based (ASIC) forwarding — very fast; full-duplex; reduces collisions</td><td>Controls broadcast traffic; path selection; ACL/security; NAT; prevents broadcast storms from crossing networks</td></tr>
+        </table>
+        <p><strong>In short:</strong> Switches make <em>intra-network</em> communication fast and efficient; routers make <em>inter-network</em> communication possible and controlled.</p>`
+      },
+      {
+        id: 'q3_2',
+        text: '3.2 PC-A is requesting a web page from a web server. Explain how data is encapsulated using the TCP/IP model.',
+        marks: 4,
+        solution: `<h4>Model Answer</h4>
+        <ol>
+          <li><strong>Application Layer:</strong> HTTP GET request is created (data).</li>
+          <li><strong>Transport Layer:</strong> Data is segmented into TCP segments; source/destination port numbers (e.g. 80) are added.</li>
+          <li><strong>Internet Layer:</strong> Each TCP segment is encapsulated in an IP packet — source and destination IP addresses are added.</li>
+          <li><strong>Network Access Layer:</strong> The IP packet is encapsulated into an Ethernet frame with source/destination MAC addresses; bits are transmitted on the medium.</li>
+        </ol>`
+      },
+      {
+        id: 'q3_3',
+        text: '3.3 Explain why the OSI model is essential for troubleshooting.',
+        marks: 2,
+        solution: `<h4>Model Answer</h4>
+        <p>The OSI model provides a <strong>common language</strong> and divides networking into <strong>layers</strong>. This lets engineers <em>isolate</em> a fault to a specific layer (bottom-up or top-down), making troubleshooting systematic. Because it is vendor-neutral, the same approach works on any equipment.</p>`
+      },
+      {
+        id: 'q3_4',
+        text: '3.4 Redraw the table and fill in the appropriate protocol, address type, and PDU for each layer.',
+        marks: 6,
+        solution: `<h4>Model Answer</h4>
+        <table>
+          <tr><th>Layer</th><th>Protocol (example)</th><th>Address Type</th><th>PDU</th></tr>
+          <tr><td>Network Layer</td><td>IPv4 / IPv6</td><td>Logical (IP) address</td><td>Packet</td></tr>
+          <tr><td>Data Link Layer</td><td>Ethernet (802.3)</td><td>Physical (MAC) address</td><td>Frame</td></tr>
+        </table>`
+      }
+    ]
+  },
+  {
+    id: 'q4',
+    title: 'Question 4 — Wireless, Ethernet & Cabling [14 Marks]',
+    parts: [
+      {
+        id: 'q4_1',
+        text: '4.1 What are the main differences between the 2.4 GHz and 5 GHz Wi-Fi bands in terms of coverage and data speed?',
+        marks: 4,
+        solution: `<h4>Model Answer</h4>
+        <table>
+          <tr><th>Band</th><th>Coverage / Range</th><th>Data Speed</th><th>Other notes</th></tr>
+          <tr><td><strong>2.4 GHz</strong></td><td>Longer range; better wall penetration</td><td>Lower maximum data rates</td><td>More interference (Bluetooth, microwaves); only 3 non-overlapping channels</td></tr>
+          <tr><td><strong>5 GHz</strong></td><td>Shorter range; less penetration</td><td>Higher data rates</td><td>Less interference; many more non-overlapping channels</td></tr>
+        </table>`
+      },
+      {
+        id: 'q4_2',
+        text: '4.2 What is the purpose of padding in an Ethernet frame, and how does it affect the frame\'s structure?',
+        marks: 2,
+        solution: `<h4>Model Answer</h4>
+        <ul>
+          <li>Ethernet requires a <strong>minimum payload of 46 bytes</strong> (so the whole frame is at least 64 bytes).</li>
+          <li>If the payload is shorter, <strong>padding bytes</strong> are added to reach 46 bytes.</li>
+          <li>This ensures the frame is long enough for CSMA/CD collision detection (legacy shared media) and meets minimum timing/slot requirements.</li>
+          <li>Padding is included in the FCS calculation but discarded by the receiver.</li>
+        </ul>`
+      },
+      {
+        id: 'q4_3',
+        text: '4.3 What happens when a switch receives a runt frame?',
+        marks: 1,
+        solution: `<h4>Model Answer</h4>
+        <p>The switch <strong>discards</strong> it. A runt frame is smaller than the 64-byte Ethernet minimum and is considered invalid/corrupted.</p>`
+      },
+      {
+        id: 'q4_4',
+        text: '4.4 A company experiences intermittent connectivity with copper twisted-pair cabling. (a) Identify two common copper cabling problems. (b) For each, explain one solution or preventive measure.',
+        marks: 4,
+        solution: `<h4>Model Answer</h4>
+        <table>
+          <tr><th>Problem</th><th>Solution / Prevention</th></tr>
+          <tr><td><strong>EMI/RFI interference</strong> (from motors, fluorescent lights, power cables)</td><td>Use shielded twisted-pair (STP), proper grounding, route data cables away from power cables, or use fibre in high-interference areas.</td></tr>
+          <tr><td><strong>Crosstalk</strong> (signal bleeding between pairs)</td><td>Use Cat5e/Cat6 with correct twist rates, terminate properly, untwist no more than 13 mm, use factory-made patch cords.</td></tr>
+          <tr><td><em>Alternative:</em> <strong>Attenuation</strong> (signal loss over distance)</td><td>Keep runs under 100 m, use repeaters/switches, use higher-category cable.</td></tr>
+          <tr><td><em>Alternative:</em> <strong>Damaged connectors / poor termination</strong></td><td>Test with cable certifier, re-terminate, use quality connectors.</td></tr>
+        </table>`
+      },
+      {
+        id: 'q4_5',
+        text: '4.5 How does a switch learn MAC addresses and build its forwarding table?',
+        marks: 3,
+        solution: `<h4>Model Answer</h4>
+        <ol>
+          <li>When a frame arrives, the switch reads the <strong>source MAC address</strong> and records it in the MAC address table together with the ingress port and a timestamp.</li>
+          <li>If the <strong>destination MAC is known</strong>, the switch forwards the frame only out of the matching port (unicast forwarding).</li>
+          <li>If the destination MAC is <strong>unknown</strong>, the switch <strong>floods</strong> the frame out all ports except the ingress port (unknown unicast flooding).</li>
+          <li>Entries <strong>age out</strong> after a default period (≈300 s) if not refreshed.</li>
+          <li>Broadcast and multicast frames are flooded out all ports except the ingress.</li>
+        </ol>`
+      }
+    ]
+  },
+  {
+    id: 'q5',
+    title: 'Question 5 — Subnetting, IPv6 & MAC [18 Marks]',
+    parts: [
+      {
+        id: 'q5_1',
+        text: '5.1 Define subnetting.',
+        marks: 1,
+        solution: `<h4>Model Answer</h4>
+        <p>Subnetting is the process of dividing a larger network into smaller, more manageable logical sub-networks (subnets) by borrowing bits from the host portion of the address.</p>`
+      },
+      {
+        id: 'q5_2',
+        text: '5.2 A small business has the network 192.168.10.0/24. If the network is divided into four equal subnets, determine the new subnet mask.',
+        marks: 2,
+        solution: `<h4>Model Answer</h4>
+        <p>4 subnets = 2² → borrow <strong>2 bits</strong> → new prefix = /26.</p>
+        <p><strong>New subnet mask = 255.255.255.192</strong></p>`
+      },
+      {
+        id: 'q5_3',
+        text: '5.3 List the network address and last usable host address of the <strong>second</strong> subnet.',
+        marks: 2,
+        solution: `<h4>Model Answer</h4>
+        <p>Subnets: .0/26, .64/26, .128/26, .192/26</p>
+        <ul>
+          <li><strong>Network address of 2nd subnet = 192.168.10.64</strong></li>
+          <li>Broadcast = 192.168.10.127</li>
+          <li><strong>Last usable host = 192.168.10.126</strong></li>
+        </ul>`
+      },
+      {
+        id: 'q5_4',
+        text: '5.4 Explain why subnetting is helpful in a business environment.',
+        marks: 2,
+        solution: `<h4>Model Answer</h4>
+        <ul>
+          <li>Reduces the size of broadcast domains → better performance.</li>
+          <li>Improves security by isolating departments.</li>
+          <li>Efficient use of IP address space (less waste).</li>
+          <li>Easier to manage and troubleshoot.</li>
+          <li>Enables hierarchical addressing and routing.</li>
+        </ul>`
+      },
+      {
+        id: 'q5_5',
+        text: '5.5 Router RB has interface G0/1 configured with 2001:DB8:ACAD:A::1/64. PC-B has MAC address 00:1A:2B:3C:4D:5E. Use the EUI-64 process to generate the Interface ID for PC-B.',
+        marks: 2,
+        solution: `<h4>Model Answer</h4>
+        <ol>
+          <li>Split MAC: <code>00:1A:2B</code> | <code>3C:4D:5E</code></li>
+          <li>Insert <code>FF:FE</code> in the middle: <code>00:1A:2B:FF:FE:3C:4D:5E</code></li>
+          <li>Flip the 7th bit (U/L bit) of the first octet: <code>00 (0000 0000) → 02 (0000 0010)</code></li>
+          <li><strong>Interface ID = 021A:2BFF:FE3C:4D5E</strong></li>
+        </ol>`
+      },
+      {
+        id: 'q5_6',
+        text: '5.6 Create the full IPv6 address for PC-B (using the interface ID above).',
+        marks: 2,
+        solution: `<h4>Model Answer</h4>
+        <p>Prefix <code>2001:DB8:ACAD:A::/64</code> + Interface ID <code>021A:2BFF:FE3C:4D5E</code></p>
+        <p><strong>Full address = 2001:DB8:ACAD:A:021A:2BFF:FE3C:4D5E</strong></p>`
+      },
+      {
+        id: 'q5_7',
+        text: '5.7 Write the complete IPv6 address in proper compressed format.',
+        marks: 2,
+        solution: `<h4>Model Answer</h4>
+        <p>Remove leading zeros in <code>021A</code> → <code>21A</code> (no zero-compression possible elsewhere):</p>
+        <p><strong>2001:DB8:ACAD:A:21A:2BFF:FE3C:4D5E</strong></p>`
+      },
+      {
+        id: 'q5_8',
+        text: '5.8 Given the MAC address 84:2B:2B:6F:9A:D3: (a) What is the OUI portion? (b) What is the vendor-assigned portion?',
+        marks: 2,
+        solution: `<h4>Model Answer</h4>
+        <ul>
+          <li><strong>OUI (first 24 bits / 3 bytes): 84:2B:2B</strong></li>
+          <li><strong>Vendor-assigned (last 24 bits / 3 bytes): 6F:9A:D3</strong></li>
+        </ul>`
+      },
+      {
+        id: 'q5_9',
+        text: '5.9 Explain how Stateless Address Autoconfiguration (SLAAC) dynamically assigns IPv6 addresses to devices on a network.',
+        marks: 3,
+        solution: `<h4>Model Answer</h4>
+        <ul>
+          <li><strong>SLAAC</strong> lets a host build its own IPv6 address <em>without</em> a DHCPv6 server.</li>
+          <li>The router sends a <strong>Router Advertisement (RA)</strong> containing the /64 prefix (or the host sends a Router Solicitation first).</li>
+          <li>The host combines the <strong>/64 prefix</strong> with an <strong>Interface ID</strong> (EUI-64 from MAC or randomly generated).</li>
+          <li>The host performs <strong>Duplicate Address Detection (DAD)</strong> to ensure the address is unique.</li>
+          <li>Result: globally unique address; the RA also provides the default gateway. Because no server tracks state, it is <em>stateless</em> and highly scalable.</li>
+        </ul>`
+      }
+    ]
+  },
+  {
+    id: 'q6',
+    title: 'Question 6 — VLANs [12 Marks]',
+    parts: [
+      {
+        id: 'q6_0',
+        text: 'Refer to the exhibit below for all parts of Question 6.',
+        marks: 0,
+        solution: `<h4>Topology Description</h4>
+        <div class="topology-box">
+        R1 (G0/0/1) ─── F0/5 ─── S1 ─── F0/1 ─── F0/1 ─── S2 ─── F0/18 ─── PC2 (VLAN 20)
+                                    │
+                                  F0/6
+                                    │
+                                  PC1 (VLAN 10)
+        </div>
+        <p>PC1 is in VLAN 10. PC2 is in VLAN 20. R1 provides inter-VLAN routing.</p>`
+      },
+      {
+        id: 'q6_1',
+        text: '6.1 Explain the difference between a trunk port and an access port in the context of VLANs.',
+        marks: 2,
+        solution: `<h4>Model Answer</h4>
+        <ul>
+          <li><strong>Access port:</strong> Carries traffic for a <em>single</em> VLAN; typically connects to end devices (PC, printer, phone).</li>
+          <li><strong>Trunk port:</strong> Carries traffic for <em>multiple</em> VLANs simultaneously using 802.1Q tagging; typically connects switches together, or a switch to a router (router-on-a-stick).</li>
+        </ul>`
+      },
+      {
+        id: 'q6_2',
+        text: '6.2 Identify all ports that should be configured as access ports.',
+        marks: 2,
+        solution: `<h4>Model Answer</h4>
+        <ul>
+          <li><strong>S1 F0/6</strong> (connects to PC1, VLAN 10)</li>
+          <li><strong>S2 F0/18</strong> (connects to PC2, VLAN 20)</li>
+        </ul>`
+      },
+      {
+        id: 'q6_3',
+        text: '6.3 Identify all ports that should be configured as trunk ports.',
+        marks: 2,
+        solution: `<h4>Model Answer</h4>
+        <ul>
+          <li><strong>S1 F0/5</strong> — link to router R1 (carries VLAN 10 and 20 to subinterfaces).</li>
+          <li><strong>S1 F0/1</strong> — inter-switch link to S2.</li>
+          <li><strong>S2 F0/1</strong> — inter-switch link to S1.</li>
+        </ul>`
+      },
+      {
+        id: 'q6_4',
+        text: '6.4 Define inter-VLAN routing.',
+        marks: 1,
+        solution: `<h4>Model Answer</h4>
+        <p><strong>Inter-VLAN routing</strong> is the process of forwarding traffic between different VLANs. It requires a Layer 3 device (router or Layer 3 switch) because VLANs are separate broadcast domains.</p>`
+      },
+      {
+        id: 'q6_5',
+        text: '6.5 Identify the inter-VLAN routing method that should be configured in this topology and justify your answer.',
+        marks: 3,
+        solution: `<h4>Model Answer</h4>
+        <p><strong>Method: Router-on-a-stick (single-arm router).</strong></p>
+        <p><strong>Justification:</strong> Only one physical router interface (R1 G0/0/1) connects to S1. Configuring subinterfaces on G0/0/1 — one for VLAN 10 and one for VLAN 20 — lets the router act as the default gateway for both VLANs. This is the most cost-effective solution for a small network with few VLANs and limited hardware.</p>`
+      },
+      {
+        id: 'q6_6',
+        text: '6.6 Explain one advantage and one disadvantage of the inter-VLAN routing method you identified above.',
+        marks: 2,
+        solution: `<h4>Model Answer</h4>
+        <ul>
+          <li><strong>Advantage:</strong> Cost-effective — only one physical router interface is needed to route between many VLANs; simple to configure for small networks.</li>
+          <li><strong>Disadvantage:</strong> Not scalable — all inter-VLAN traffic must traverse the single physical link into the router, creating a bottleneck; the router CPU processes every packet (no hardware switching).</li>
+        </ul>`
+      }
+    ]
+  },
+  {
+    id: 'q7',
+    title: 'Question 7 — Protocols & Transport Layer [16 Marks]',
+    parts: [
+      {
+        id: 'q7_1',
+        text: '7.1 A user reports that emails initially viewed on their smartphone are inaccessible on their laptop. (a) Explain the likely cause based on the email protocols involved. (b) Devise a plan to resolve the problem.',
+        marks: 3,
+        solution: `<h4>Model Answer</h4>
+        <p><strong>(a) Likely cause:</strong> The smartphone is configured with <strong>POP3</strong>. By default POP3 <em>downloads</em> mail to the device and <em>removes it from the server</em>. So the laptop cannot see those messages — they no longer exist on the mail server.</p>
+        <p><strong>(b) Plan:</strong></p>
+        <ul>
+          <li>Reconfigure <em>both</em> devices to use <strong>IMAP</strong> (or IMAP over SSL, port 993), which keeps mail synchronised on the server so all devices see the same mailbox.</li>
+          <li>If POP3 must be used, enable the "<em>leave a copy of messages on the server</em>" option on every device.</li>
+          <li>Verify account settings (server names, ports, SSL/TLS) on both devices.</li>
+        </ul>`
+      },
+      {
+        id: 'q7_2',
+        text: '7.2 Discuss the role of DHCP and DNS in a network.',
+        marks: 4,
+        solution: `<h4>Model Answer</h4>
+        <p><strong>DHCP (Dynamic Host Configuration Protocol):</strong></p>
+        <ul>
+          <li>Automatically assigns IP addresses, subnet mask, default gateway, and DNS server(s) to hosts when they join the network.</li>
+          <li>Uses the <strong>DORA</strong> process: Discover → Offer → Request → Acknowledge.</li>
+          <li>Prevents duplicate addresses, reduces manual configuration errors, and leases addresses from a managed pool.</li>
+        </ul>
+        <p><strong>DNS (Domain Name System):</strong></p>
+        <ul>
+          <li>Translates human-friendly <strong>domain names</strong> (e.g. www.example.com) into IP addresses.</li>
+          <li>Uses a hierarchical, distributed database of name servers.</li>
+          <li>Essential for web browsing and almost every internet service; without DNS users would have to remember IP addresses.</li>
+        </ul>`
+      },
+      {
+        id: 'q7_3',
+        text: '7.3 Compare TCP and UDP in terms of: (a) reliability and connection setup, (b) real-world use cases, (c) header overhead and performance.',
+        marks: 5,
+        solution: `<h4>Model Answer</h4>
+        <table>
+          <tr><th></th><th>TCP</th><th>UDP</th></tr>
+          <tr><td><strong>(a) Reliability &amp; setup</strong></td><td>Connection-oriented (3-way handshake); reliable — ACKs, retransmissions, sequencing, flow control</td><td>Connectionless; best-effort — no ACK, no retransmission, no ordering</td></tr>
+          <tr><td><strong>(b) Use cases</strong></td><td>HTTP/HTTPS, FTP, SMTP/POP3/IMAP, SSH, Telnet</td><td>DNS, DHCP, VoIP, video streaming, online gaming, TFTP, SNMP</td></tr>
+          <tr><td><strong>(c) Overhead &amp; performance</strong></td><td>20–60 byte header; more overhead; slower but reliable</td><td>8-byte header; minimal overhead; faster, lower latency</td></tr>
+        </table>`
+      },
+      {
+        id: 'q7_4',
+        text: '7.4 Discuss how TCP uses flow control and error handling to ensure reliable data transmission.',
+        marks: 4,
+        solution: `<h4>Model Answer</h4>
+        <p><strong>Flow control:</strong></p>
+        <ul>
+          <li>The TCP header carries a <strong>window size</strong> that tells the sender how much data the receiver can accept.</li>
+          <li><strong>Sliding window</strong> allows the sender to transmit multiple segments before waiting for an ACK.</li>
+          <li>If the receiver's buffer fills, it advertises a smaller window (even zero) to pause transmission — preventing buffer overflow.</li>
+        </ul>
+        <p><strong>Error handling:</strong></p>
+        <ul>
+          <li><strong>Sequence numbers</strong> let the receiver reorder out-of-order segments and detect missing ones.</li>
+          <li><strong>ACKs</strong> confirm receipt; if an ACK is not received within a timeout, the sender <strong>retransmits</strong>.</li>
+          <li>The <strong>checksum</strong> detects corrupted segments, which are discarded.</li>
+          <li><strong>Fast retransmission</strong> on three duplicate ACKs speeds up recovery of lost segments.</li>
+        </ul>`
+      }
+    ]
+  }
+];
+
+/* ============================================================
+   RENDER FUNCTIONS
+   ============================================================ */
+
+function renderMC() {
+  const container = document.getElementById('sectionA');
+  mcQuestions.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'question';
+    div.id = 'q-' + q.id;
+    let optsHTML = '';
+    Object.entries(q.options).forEach(([key, label]) => {
+      const inputType = q.multi ? 'checkbox' : 'radio';
+      optsHTML += `<label><input type="${inputType}" name="${q.id}" value="${key}"> <span><strong>${key})</strong> ${label}</span></label>`;
+    });
+    div.innerHTML = `
+      <div class="q-text">${i + 1}. ${q.text} <span class="q-marks">1 mark${q.multi ? ' (choose 2)' : ''}</span></div>
+      <div class="options">${optsHTML}</div>
+      <div class="feedback" id="fb-${q.id}"></div>
+    `;
+    container.appendChild(div);
+  });
+  // highlight selected
+  document.querySelectorAll('.options input').forEach(inp => {
+    inp.addEventListener('change', function () {
+      const name = this.name;
+      document.querySelectorAll(`input[name="${name}"]`).forEach(other => {
+        other.closest('label').classList.toggle('selected', other.checked);
+      });
+    });
+  });
+}
+
+function renderShort() {
+  const container = document.getElementById('sectionB');
+  shortQuestions.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'question';
+    div.id = 'q-' + q.id;
+    if (q.type === 'matching') {
+      let rows = q.addresses.map(a => `
+        <tr>
+          <td>${a.key}</td>
+          <td><input type="text" id="match-${a.key}" data-correct="${a.correct}" placeholder="A–E"></td>
+        </tr>`).join('');
+      div.innerHTML = `
+        <div class="q-text">${i + 1}. ${q.text} <span class="q-marks">5 marks</span></div>
+        <div style="margin:8px 0; font-size:0.88em; color:#93c5fd;">${q.legend}</div>
+        <table class="match-table"><tbody>${rows}</tbody></table>
+        <div class="feedback" id="fb-${q.id}"></div>
+      `;
+    } else {
+      div.innerHTML = `
+        <div class="q-text">${i + 1}. ${q.text} <span class="q-marks">1 mark</span></div>
+        <div class="short-answer">
+          <input type="text" id="short-${q.id}" placeholder="Type your answer…">
+        </div>
+        <div class="feedback" id="fb-${q.id}"></div>
+      `;
+    }
+    container.appendChild(div);
+  });
+}
+
+function renderStructured() {
+  const container = document.getElementById('sectionC');
+  structuredQuestions.forEach(q => {
+    const div = document.createElement('div');
+    div.className = 'question';
+    div.id = 'q-' + q.id;
+    let partsHTML = '';
+    q.parts.forEach(p => {
+      const marksTag = p.marks > 0 ? `<span class="q-marks">${p.marks} mark${p.marks>1?'s':''}</span>` : '';
+      const answerBox = p.marks > 0 ? `<textarea id="ta-${p.id}" placeholder="Write your answer here…" rows="4"></textarea>` : '';
+      partsHTML += `
+        <div style="margin-bottom:18px;">
+          <div class="q-text">${p.text} ${marksTag}</div>
+          ${answerBox}
+          <div class="solution" id="sol-${p.id}">
+            ${p.solution}
+          </div>
+        </div>
+      `;
+    });
+    div.innerHTML = `
+      <div style="font-size:1.05em; font-weight:700; color:#93c5fd; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid #334155;">
+        ${q.title}
+      </div>
+      ${partsHTML}
+    `;
+    container.appendChild(div);
+  });
+}
+
+/* ============================================================
+   MARKING LOGIC
+   ============================================================ */
+
+function normalize(str) {
+  return str.toLowerCase().trim().replace(/\s+/g, ' ');
+}
+
+function markAuto() {
+  let total = 0;
+  let max = 0;
+
+  // --- Section A ---
+  mcQuestions.forEach(q => {
+    max += q.multi ? 2 : 1;
+    const fb = document.getElementById('fb-' + q.id);
+    let correct = false;
+    if (q.multi) {
+      const checked = [...document.querySelectorAll(`input[name="${q.id}"]:checked`)].map(el => el.value).sort();
+      const expected = [...q.correct].sort();
+      correct = JSON.stringify(checked) === JSON.stringify(expected);
+      // partial credit: 1 mark per correct selection
+      let partial = 0;
+      checked.forEach(v => { if (q.correct.includes(v)) partial++; });
+      if (!correct) total += Math.max(0, partial - (checked.length - partial));
+      else total += 2;
+    } else {
+      const sel = document.querySelector(`input[name="${q.id}"]:checked`);
+      correct = sel && sel.value === q.correct;
+      if (correct) total += 1;
+    }
+    if (correct) {
+      fb.className = 'feedback correct';
+      fb.innerHTML = '✅ Correct! ' + q.explanation;
+    } else {
+      fb.className = 'feedback incorrect';
+      fb.innerHTML = `❌ Incorrect. Correct answer: <strong>${Array.isArray(q.correct) ? q.correct.join(', ') : q.correct}</strong>. ${q.explanation}`;
+    }
+  });
+
+  // --- Section B ---
+  shortQuestions.forEach(q => {
+    max += (q.type === 'matching' ? q.addresses.length : 1);
+    const fb = document.getElementById('fb-' + q.id);
+    if (q.type === 'matching') {
+      let correctCount = 0;
+      q.addresses.forEach(a => {
+        const inp = document.getElementById('match-' + a.key);
+        if (normalize(inp.value) === a.correct) correctCount++;
+      });
+      total += correctCount;
+      if (correctCount === q.addresses.length) {
+        fb.className = 'feedback correct';
+        fb.innerHTML = `✅ All 5 correct! ${q.explanation}`;
+      } else {
+        fb.className = 'feedback incorrect';
+        fb.innerHTML = `❌ ${correctCount}/${q.addresses.length} correct. ${q.explanation}`;
+      }
+    } else {
+      const inp = document.getElementById('short-' + q.id);
+      const val = normalize(inp.value);
+      const ok = q.correct.some(c => normalize(c) === val);
+      if (ok) {
+        total += 1;
+        fb.className = 'feedback correct';
+        fb.innerHTML = '✅ Correct! ' + q.explanation;
+      } else {
+        fb.className = 'feedback incorrect';
+        fb.innerHTML = `❌ Incorrect. Expected: <strong>${q.correct[0]}</strong>. ${q.explanation}`;
+      }
+    }
+  });
+
+  document.getElementById('scoreDisplay').textContent = total + ' / ' + max;
+  document.getElementById('resultBox').classList.add('show');
+  document.getElementById('resultBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function showAllSolutions() {
+  document.querySelectorAll('.solution').forEach(el => el.classList.add('show'));
+  // also reveal MC explanations
+  mcQuestions.forEach(q => {
+    const fb = document.getElementById('fb-' + q.id);
+    fb.className = 'feedback correct';
+    fb.innerHTML = `📖 Correct answer: <strong>${Array.isArray(q.correct) ? q.correct.join(', ') : q.correct}</strong>. ${q.explanation}`;
+  });
+  shortQuestions.forEach(q => {
+    const fb = document.getElementById('fb-' + q.id);
+    fb.className = 'feedback correct';
+    fb.innerHTML = `📖 ${q.explanation}`;
+  });
+}
+
+function resetAll() {
+  if (!confirm('Reset all answers and scores?')) return;
+  document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(i => { i.checked = false; });
+  document.querySelectorAll('input[type="text"], textarea').forEach(i => { i.value = ''; });
+  document.querySelectorAll('.feedback').forEach(f => { f.className = 'feedback'; f.innerHTML = ''; });
+  document.querySelectorAll('.solution').forEach(s => s.classList.remove('show'));
+  document.querySelectorAll('.options label').forEach(l => l.classList.remove('selected'));
+  document.getElementById('resultBox').classList.remove('show');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* progress bar */
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+});
+
+/* ============================================================
+   INIT
+   ============================================================ */
+renderMC();
+renderShort();
+renderStructured();
 </script>
 </body>
 </html>
